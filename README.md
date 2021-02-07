@@ -1,4 +1,20 @@
-# Getting Started with Create React App
+# React/Redux/TS
+## Локальная установка и запуск
+
+* Подтягиваем зависимости:
+```bash
+yarn install 
+```
+* Запускаем json-сервер:
+```
+json-server json/goods.json --port 3004
+```
+* Запускаем само приложение:
+```bash
+yarn run
+```
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
