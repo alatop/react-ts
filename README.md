@@ -5,7 +5,7 @@
 ```bash
 yarn install 
 ```
-* Запускаем json-сервер:
+* Запускаем json-сервер (предварительно его можно установить, например, глобально: `npm install -g json-server`):
 ```
 json-server json/goods.json --port 3004
 ```

@@ -1,17 +1,10 @@
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import rootReducer from '../reducers/RootReducer';
 
-function counterReducer(state = { value: 0 }, action) {
-    switch (action.type) {
-      case 'counter/incremented':
-        return { value: state.value + 1 }
-      case 'counter/decremented':
-        return { value: state.value - 1 }
-      default:
-        return state
-    }
-  }
-
-
-const store = createStore(counterReducer);
+const store = createStore(rootReducer,
+  applyMiddleware(
+    thunkMiddleware,
+));
 
 export default store;
