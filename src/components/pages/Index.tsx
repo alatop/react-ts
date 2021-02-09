@@ -6,7 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import App from './App/App';
-import GoodsList  from './Goods/GoodsList';
+import GoodsList  from './Goods/GoodsList/GoodsList';
 
 export default function BasicExample() {
     return (
