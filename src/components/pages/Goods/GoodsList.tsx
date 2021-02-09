@@ -50,7 +50,7 @@ export default function GoodsList() {
                      <tr key={index}>
                        <td>{item.id}</td>
                        <td>{item.name}</td>
-                       <td>{item.price}</td>
+                       <td>{item.price} ₽</td>
                      </tr>
                    );
                 })}
