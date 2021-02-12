@@ -22,5 +22,10 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "paths": {
+    "@app-universal/*": [
+      "src/components/universal/*"
+    ],
+  },
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import SortSign from '@app-universal/SortSign';
 
 export default function GoodsListTable(props) {
     const {goods}  =props;
@@ -11,7 +12,7 @@ export default function GoodsListTable(props) {
                 ID
                 </th>
                 <th>
-                Название
+                Название <SortSign />
                 </th>
                 <th>
                 Цена
