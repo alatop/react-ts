@@ -1,8 +1,9 @@
 import React from "react";
-// import SortSign from '@app-universal/SortSign';
+import SortSign from '@app-universal/SortSign';
 // import SortSign from '../../../universal/SortSign';
-import Test from '@app-universal/Test';
 
+
+ 
 export default function GoodsListTable(props) {
     const {goods}  =props;
     return (
@@ -14,8 +15,8 @@ export default function GoodsListTable(props) {
                 </th>
                 <th>
                 Название
-                 {/* <SortSign /> */}
-                 <Test />
+                 <SortSign />
+                 {/* <Test /> */} 
                 </th>
                 <th>
                 Цена

@@ -18,15 +18,18 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "baseUrl": "./src",
+    "paths": {
+      "@app-universal/*": [
+        "components/universal/*"
+      ],
+      "test/*": [
+        "components/universal/*"
+      ],
+    },
   },
   "include": [
     "src"
   ],
-  "baseUrl": "src",
-  "paths": {
-    "@app-universal": [
-      "components/universal"
-    ],
-  },
 }
