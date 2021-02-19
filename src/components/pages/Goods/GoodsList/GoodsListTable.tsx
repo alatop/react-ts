@@ -1,7 +1,7 @@
 import React from "react";
-import SortSign from '@app-universal/SortSign';
+import SortSign from '@app-universal/SortSign'; 
+// import SortSign from 'test/SortSign';
 // import SortSign from '../../../universal/SortSign';
-
 
  
 export default function GoodsListTable(props) {
