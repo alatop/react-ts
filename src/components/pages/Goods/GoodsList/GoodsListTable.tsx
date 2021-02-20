@@ -4,8 +4,8 @@ import SortSign from '@app-universal/SortSign';
 // import SortSign from '../../../universal/SortSign';
 
  
-export default function GoodsListTable(props) {
-    const {goods}  =props;
+export default function GoodsListTable(props: object) {
+    const {goods: array}  =props;
     return (
         <table>
             <thead>

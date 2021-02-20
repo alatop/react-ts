@@ -11,8 +11,8 @@ export default function GoodsList() {
   //   listLoaded: false,
   // });
   const dispatch = useDispatch();
-  const goods = useSelector(getGoodsList);
-  const goodsListIsLoaded = useSelector(getGoodsListIsLoaded);
+  const goods: Array<object> = useSelector(getGoodsList);
+  const goodsListIsLoaded : Boolean = useSelector(getGoodsListIsLoaded);
 
   
   React.useEffect(() =>  {

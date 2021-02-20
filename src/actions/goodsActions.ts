@@ -1,8 +1,9 @@
 import { RootActionTypes } from '../constants/actionTypes/RootActionTypes';
+import { Dispatch } from 'redux';
 
 const baseUrl = 'http://localhost:3004/';
 
-export const loadGoods =  async (dispatch) => {
+export const loadGoods =  async (dispatch: Dispatch) => {
 	let response = await fetch(baseUrl + 'goods');
     // await new Promise(r => setTimeout(r, 1000));
     if (response.ok) { 
@@ -17,7 +18,7 @@ export const loadGoods =  async (dispatch) => {
 };
 
 
-export const resetGoodsList =  async (dispatch) => {
+export const resetGoodsList =  async (dispatch: Dispatch) => {
 	dispatch({
         type: RootActionTypes.RESET_GOODS_LIST,
     });
