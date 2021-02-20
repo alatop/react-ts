@@ -3,9 +3,14 @@ import React from "react";
 // import SortSign from 'test/SortSign';
 // import SortSign from '../../../universal/SortSign';
 
+type GoodType = {
+    id: number,
+    name: string,
+    price: string,
+}
 
 type GoodsListTableProps = {
-    goods:Array<object>,
+    goods:Array<GoodType>,
   }
  
 export default function GoodsListTable(props: GoodsListTableProps) {
