@@ -1,11 +1,16 @@
+import SortSign from '@app-universal/SortSign';
 import React from "react";
-import SortSign from '@app-universal/SortSign'; 
 // import SortSign from 'test/SortSign';
 // import SortSign from '../../../universal/SortSign';
 
+
+type GoodsListTableProps = {
+    goods:Array<object>,
+  }
  
-export default function GoodsListTable(props: object) {
-    const {goods: array}  =props;
+export default function GoodsListTable(props: GoodsListTableProps) {
+    const {goods}  =props;
+
     return (
         <table>
             <thead>
