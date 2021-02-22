@@ -1,7 +1,5 @@
 import SortSign from '@app-universal/SortSign';
 import React from "react";
-// import SortSign from 'test/SortSign';
-// import SortSign from '../../../universal/SortSign';
 
 type GoodType = {
     id: number,
@@ -9,11 +7,13 @@ type GoodType = {
     price: string,
 }
 
-type GoodsListTableProps = {
-    goods:Array<GoodType>,
-  }
+export  type GoodsListType =  Array<GoodType>; 
+
+type GoodsListTablePropsType = {
+    goods: GoodsListType,
+}
  
-export default function GoodsListTable(props: GoodsListTableProps) {
+export default function GoodsListTable(props: GoodsListTablePropsType) {
     const {goods}  =props;
 
     return (

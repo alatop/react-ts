@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { loadGoods, resetGoodsList } from '../../../../actions/goodsActions';
 import { getGoodsList, getGoodsListIsLoaded } from '../../../../reducers/commonSelectors';
-import GoodsListTable from './GoodsListTable';
+import GoodsListTable, { GoodsListType } from './GoodsListTable';
 
 export default function GoodsList() {
 
@@ -11,7 +11,7 @@ export default function GoodsList() {
   //   listLoaded: false,
   // });
   const dispatch = useDispatch();
-  const goods: Array<object> = useSelector(getGoodsList);
+  const goods: GoodsListType = useSelector(getGoodsList);
   const goodsListIsLoaded : Boolean = useSelector(getGoodsListIsLoaded);
 
   

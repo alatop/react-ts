@@ -6,7 +6,12 @@ const initialState = {
     goodListLoaded: false,
   }
 
-export default function rootReducer(state = initialState, action) {
+type commonActionType = {
+  type: string,
+  data: any,
+}
+
+export default function rootReducer(state = initialState, action: commonActionType) {
     switch (action.type) {
       case RootActionTypes.SET_GOODS_LIST_DATA:
         return { ...state,
@@ -21,4 +26,4 @@ export default function rootReducer(state = initialState, action) {
       default:
         return state
     }
-  }
+}
