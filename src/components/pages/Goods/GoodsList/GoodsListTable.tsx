@@ -1,4 +1,4 @@
-import SortSign from '@app-universal/SortSign';
+import SortSign from '@app-universal/SortSign/SortSign';
 import React from "react";
 
 type GoodType = {
