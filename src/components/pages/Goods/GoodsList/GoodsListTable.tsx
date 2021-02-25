@@ -29,7 +29,7 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
                  {/* <Test /> */} 
                 </th>
                 <th>
-                Цена
+                Цена <SortSign />
                 </th>
             </tr>
             </thead>

@@ -17,9 +17,20 @@ export const loadGoods =  async (dispatch: Dispatch) => {
     }
 };
 
-
 export const resetGoodsList =  async (dispatch: Dispatch) => {
 	dispatch({
         type: RootActionTypes.RESET_GOODS_LIST,
+    });
+};
+
+export const sortByPriceUp =  async (dispatch: Dispatch) => {
+	dispatch({
+        type: RootActionTypes.ON_PRICE_ASCENDING_SORT,
+    });
+};
+
+export const sortByPriceDown =  async (dispatch: Dispatch) => {
+	dispatch({
+        type: RootActionTypes.OFF_PRICE_ASCENDING_SORT,
     });
 };

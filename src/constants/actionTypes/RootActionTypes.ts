@@ -5,7 +5,9 @@ type RootActionTypesListType = {
 }
 let RootActionTypes: RootActionTypesListType = {
     SET_GOODS_LIST_DATA: null,
-    RESET_GOODS_LIST: null
+    RESET_GOODS_LIST: null,
+    OFF_PRICE_ASCENDING_SORT: null,
+    ON_PRICE_ASCENDING_SORT: null,
 };
 
 for (const key of Object.keys(RootActionTypes)) {

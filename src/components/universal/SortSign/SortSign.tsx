@@ -5,9 +5,24 @@ import downArrowPict from './imgs/down.png';
 const style = {cursor: 'pointer'};
 const arrowImgstyle = {width: '20px'};
 
-export default function SortSign() {
+type SortSignPropsTypes = {
+  onUp?: Function,
+  onDown?: Function,
+};
+
+export default function SortSign(props: SortSignPropsTypes) {
   
   let [isUp, setUp] = React.useState(false);
+
+  const {onUp, onDown} = props;
+
+  React.useEffect(() => {
+    if (isUp) {
+      if (onUp) onUp();
+    } else {
+      if (onDown) onDown();
+    }
+  }, [isUp, onUp, onDown]);
 
   const onClick = React.useCallback(() => {
     setUp((prevVal: boolean) => {return !prevVal;})
