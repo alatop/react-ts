@@ -332,7 +332,8 @@ module.exports = function (webpackEnv) {
         }),
         ...(modules.webpackAliases || {}),
         '@app-universal':  path.resolve(__dirname, '../src/components/universal/'),
-        'test':  path.resolve(__dirname, '../src/components/universal/'),
+        '@app-actions':  path.resolve(__dirname, '../src/actions/'),
+        '@app-reducers':  path.resolve(__dirname, '../src/reducers/'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

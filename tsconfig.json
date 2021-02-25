@@ -24,8 +24,11 @@
       "@app-universal/*": [
         "components/universal/*"
       ],
-      "test/*": [
-        "components/universal/*"
+      "@app-actions/*": [
+        "actions/*"
+      ],
+      "@app-reducers/*": [
+        "reducers/*"
       ],
     },
   },
