@@ -1,6 +1,9 @@
 import SortSign from '@app-universal/SortSign/SortSign';
 import React from "react";
-import { sortByPriceUp, sortByPriceDown } from '@app-actions/goodsActions';
+import {
+    sortByPriceUp, sortByPriceDown,
+    sortByNameUp, sortByNameDown
+} from '@app-actions/goodsActions';
 import { useDispatch } from 'react-redux';
 
 type GoodType = {
@@ -20,16 +23,24 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
 
     const dispatch = useDispatch();
 
-    const onSortByPriceUp = React.useCallback(()=> {
+    const onSortByPriceUp = React.useCallback(() => {
         console.log('up action!');
         dispatch(sortByPriceUp);
     }, [dispatch]);
 
-    const onSortByPriceDown = React.useCallback(()=> {
-        console.log('down action!');
+    const onSortByPriceDown = React.useCallback(() => {
         dispatch(sortByPriceDown);
     }, [dispatch]);
-    
+
+    const onSortByNameUp = React.useCallback(() => {
+        console.log('up action!');
+        dispatch(sortByNameUp);
+    }, [dispatch]);
+
+    const onSortByNameDown = React.useCallback(() => {
+        dispatch(sortByNameDown);
+    }, [dispatch]);
+
     return (
         <table>
             <thead>
@@ -39,8 +50,10 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
                     </th>
                     <th>
                         Название
-                        <SortSign />
-                        {/* <Test /> */}
+                        <SortSign
+                            onUp={onSortByNameUp }
+                            onDown={onSortByNameDown}
+                        />
                     </th>
                     <th>
                         Цена <SortSign
