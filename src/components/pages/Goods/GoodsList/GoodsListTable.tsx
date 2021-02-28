@@ -21,10 +21,12 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
     const dispatch = useDispatch();
 
     const onSortByPriceUp = React.useCallback(()=> {
+        console.log('up action!');
         dispatch(sortByPriceUp);
     }, [dispatch]);
 
     const onSortByPriceDown = React.useCallback(()=> {
+        console.log('down action!');
         dispatch(sortByPriceDown);
     }, [dispatch]);
     

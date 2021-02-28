@@ -16,17 +16,15 @@ export default function SortSign(props: SortSignPropsTypes) {
 
   const {onUp, onDown} = props;
 
-  React.useEffect(() => {
-    if (isUp) {
-      if (onUp) onUp();
-    } else {
-      if (onDown) onDown();
-    }
-  }, [isUp, onUp, onDown]);
-
   const onClick = React.useCallback(() => {
-    setUp((prevVal: boolean) => {return !prevVal;})
-  }, [setUp]);
+    if (isUp) {
+      setUp(false);
+      if (onDown) onDown();
+    } else {
+      setUp(true);
+      if (onUp) onUp();
+    }
+  }, [setUp, isUp, onUp, onDown]);
 
     return (
       <span onClick={onClick} style={style}>
