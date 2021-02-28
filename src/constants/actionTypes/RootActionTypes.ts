@@ -10,6 +10,7 @@ let RootActionTypes: RootActionTypesListType = {
     ON_PRICE_ASCENDING_SORT: null,
     OFF_NAME_ASCENDING_SORT: null,
     ON_NAME_ASCENDING_SORT: null,
+    SET_FILTERING_BY_NAME_SUBSTR: null,
 };
 
 for (const key of Object.keys(RootActionTypes)) {

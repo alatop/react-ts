@@ -14,6 +14,9 @@ json-server json/goods.json --port 3004
 yarn run
 ```
 
+## @TODO
+
+* Компонент таблицы сейчас по сути не является чисто "глупым",спукать ли в него напр. экшены пропсами из родительского?
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

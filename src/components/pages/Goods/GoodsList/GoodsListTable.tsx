@@ -2,9 +2,9 @@ import SortSign from '@app-universal/SortSign/SortSign';
 import React from "react";
 import {
     sortByPriceUp, sortByPriceDown,
-    sortByNameUp, sortByNameDown
+    sortByNameUp, sortByNameDown, 
 } from '@app-actions/goodsActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 
 type GoodType = {
     id: number,
@@ -41,7 +41,10 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
         dispatch(sortByNameDown);
     }, [dispatch]);
 
+
     return (
+        <div>
+      
         <table>
             <thead>
                 <tr>
@@ -61,6 +64,9 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
                             onDown={onSortByPriceDown}
                         />
                     </th>
+                    <th>
+                        Действия
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -70,11 +76,13 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
                             <td>{item.id}</td>
                             <td>{item.name}</td>
                             <td>{item.price} ₽</td>
+                            <td>Редактировать Удалить</td>
                         </tr>
                     );
                 })}
             </tbody>
 
         </table>
+        </div>
     );
 }

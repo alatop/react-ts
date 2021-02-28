@@ -8,6 +8,7 @@ const initialState = {
   priceAscendingSort: false,
   nameAscendingSort: false,
   sortBy: 'price',
+  filteringByNameSubstr: '',
 }
 
 type commonActionType = {
@@ -52,6 +53,11 @@ export default function rootReducer(state = initialState, action: commonActionTy
         ...state,
         nameAscendingSort: false,
         sortBy: action.data.sortBy,
+      }
+    case RootActionTypes.SET_FILTERING_BY_NAME_SUBSTR:
+      return {
+        ...state,
+        filteringByNameSubstr: action.data,
       }
     default:
       return state
