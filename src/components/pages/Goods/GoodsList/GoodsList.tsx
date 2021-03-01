@@ -1,9 +1,9 @@
+import { filterByName, loadGoods, resetGoodsList } from '@app-actions/goodsActions';
+import { filteringByNameSubstrSelector, getGoodsListIsLoaded, goodsLisSortedtSelector } from '@app-reducers/commonSelectors';
+import UrlSyncedTextInput from '@app-universal/Form/UrlSyncedTextInput';
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { loadGoods, resetGoodsList, filterByName } from '@app-actions/goodsActions';
-import { goodsLisSortedtSelector, getGoodsListIsLoaded } from '@app-reducers/commonSelectors';
 import GoodsListTable, { GoodsListType } from './GoodsListTable';
-import { filteringByNameSubstrSelector } from '@app-reducers/commonSelectors';
 
 export default function GoodsList() {
 
@@ -34,7 +34,9 @@ export default function GoodsList() {
   return (
 
     <div>
-      <input value={filteringNameSubstring} onChange={onChangeNameFilter} />
+      <UrlSyncedTextInput
+       value={filteringNameSubstring} 
+       onChange={onChangeNameFilter} />
       <div>
         {goodsListIsLoaded ?
 

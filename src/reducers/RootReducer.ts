@@ -1,6 +1,5 @@
 
 import { RootActionTypes } from '../constants/actionTypes/RootActionTypes';
-import { priceAscendingSortSelector } from './commonSelectors';
 
 const initialState = {
   goods: [],
