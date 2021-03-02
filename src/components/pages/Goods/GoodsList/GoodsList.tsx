@@ -18,7 +18,6 @@ type GoodsListPropsType = {
   match: match<filterParams>,
 }
 
-
 export default function GoodsList(props: GoodsListPropsType) {
 
   const { history, match } = props;

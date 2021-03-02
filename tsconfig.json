@@ -33,6 +33,9 @@
       "@app-types": [
         "types/types.d.ts"
       ],
+      "@app-pages/*": [
+        "components/pages/*"
+      ],
     },
   },
   "include": [
