@@ -51,7 +51,7 @@ export const sortByNameDown = async (dispatch: Dispatch) => {
     });
 };
 
-export const filterByName =  (substr: string) => async (dispatch: Dispatch) => {
+export const filterByName =  (substr?: string) => async (dispatch: Dispatch) => {
     dispatch({
         type: RootActionTypes.SET_FILTERING_BY_NAME_SUBSTR,
         data: substr,

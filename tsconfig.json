@@ -30,6 +30,9 @@
       "@app-reducers/*": [
         "reducers/*"
       ],
+      "@app-types": [
+        "types/types.d.ts"
+      ],
     },
   },
   "include": [
