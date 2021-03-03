@@ -49,6 +49,7 @@ export default function GoodsList(props: GoodsListPropsType) {
       dispatch(filterByName(initFilterValue));
     }
   },
+  // eslint-disable-next-line
     [dispatch]
   );
 
@@ -64,7 +65,6 @@ export default function GoodsList(props: GoodsListPropsType) {
     <div>
       <UrlSyncedTextInput
         history={history}
-        match={match}
         value={filteringNameSubstring}
         onChange={onChangeNameFilter}
         getParamName={filterParamName}

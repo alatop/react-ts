@@ -4,7 +4,6 @@ import { ChangeEventHandler } from "react";
 import TextInput from "./TextInput";
 import { History } from 'history';
 import { StringKeyObject } from '@app-types';
-import { match } from 'react-router';
 import queryString from 'query-string';
 
 type TextInputPropsType = {
@@ -12,12 +11,11 @@ type TextInputPropsType = {
     onChange?: ChangeEventHandler,
     history: History,
     getParamName: string,
-    match: match,
 }
 
 
 export default function UrlSyncedTextInput(props: TextInputPropsType) {
-    const { value, onChange, history, getParamName, match } = props;
+    const { value, onChange, history, getParamName } = props;
 
     const onChangeSelf = React.useCallback((evt) => {
 
