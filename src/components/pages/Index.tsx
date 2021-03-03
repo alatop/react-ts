@@ -6,8 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import App from './App/App';
-import GoodsList from './Goods/GoodsList/GoodsList';
-import GoodsEdit from './Goods/GoodsEdit';
+import GoodsListRouter from './Goods/GoodsList/GoodsListRouter';
 
 export default function BasicExample() {
   return (
@@ -34,18 +33,10 @@ export default function BasicExample() {
             <App />
           </Route>
           <Route
-            path="/goods/edit/:goods_id"
-            render={props =>
-              <GoodsEdit  {...props} />}
-          />
-          <Route
             path="/goods"
             render={props =>
-              <GoodsList  {...props} />}
+              <GoodsListRouter  {...props} />}
           />
-
-
-
         </Switch>
       </div>
     </Router>

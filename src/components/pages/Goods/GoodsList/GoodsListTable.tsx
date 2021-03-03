@@ -2,9 +2,10 @@ import SortSign from '@app-universal/SortSign/SortSign';
 import React from "react";
 import {
     sortByPriceUp, sortByPriceDown,
-    sortByNameUp, sortByNameDown, 
+    sortByNameUp, sortByNameDown,
 } from '@app-actions/goodsActions';
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { NavLink } from "react-router-dom";
 
 type GoodType = {
     id: number,
@@ -44,45 +45,49 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
 
     return (
         <div>
-      
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        ID
-                    </th>
-                    <th>
-                        Название
-                        <SortSign
-                            onUp={onSortByNameUp }
-                            onDown={onSortByNameDown}
-                        />
-                    </th>
-                    <th>
-                        Цена <SortSign
-                            onUp={onSortByPriceUp}
-                            onDown={onSortByPriceDown}
-                        />
-                    </th>
-                    <th>
-                        Действия
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {goods.map((item, index) => {
-                    return (
-                        <tr key={index}>
-                            <td>{item.id}</td>
-                            <td>{item.name}</td>
-                            <td>{item.price} ₽</td>
-                            <td>Редактировать Удалить</td>
-                        </tr>
-                    );
-                })}
-            </tbody>
 
-        </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                    </th>
+                        <th>
+                            Название
+                        <SortSign
+                                onUp={onSortByNameUp}
+                                onDown={onSortByNameDown}
+                            />
+                        </th>
+                        <th>
+                            Цена <SortSign
+                                onUp={onSortByPriceUp}
+                                onDown={onSortByPriceDown}
+                            />
+                        </th>
+                        <th>
+                            Действия
+                    </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {goods.map((item, index) => {
+                        return (
+                            <tr key={index}>
+                                <td>{item.id}</td>
+                                <td>{item.name}</td>
+                                <td>{item.price} ₽</td>
+                                <td><NavLink
+                                    to={`/goods/edit/${item.id}`}
+                                >
+                                    Редактировать
+					            </NavLink> Удалить</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+
+            </table>
         </div>
     );
 }
