@@ -1,6 +1,11 @@
 
 import { RootActionTypes } from '../constants/actionTypes/RootActionTypes';
 
+
+const defultGoodsItemFormDataState = {
+
+};
+
 const initialState = {
   goods: [],
   goodListLoaded: false,
@@ -8,6 +13,9 @@ const initialState = {
   nameAscendingSort: false,
   sortBy: 'price',
   filteringByNameSubstr: '',
+  formData: defultGoodsItemFormDataState,
+  formDataSaved: false,
+  savingInProcess: false,
 }
 
 type commonActionType = {
@@ -57,6 +65,26 @@ export default function rootReducer(state = initialState, action: commonActionTy
       return {
         ...state,
         filteringByNameSubstr: action.data,
+      }
+    case RootActionTypes.SET_FORM_GOODS_ITEM_DATA:
+      return {
+        ...state,
+        formData: action.data,
+      }
+    case RootActionTypes.RESET_FORM_GOODS_ITEM_DATA:
+      return {
+        ...state,
+        formData: defultGoodsItemFormDataState,
+      }
+    case RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_VALUE:
+      return {
+        ...state,
+        formData: { ...state.formData, [action.data.name]: action.data.value },
+      }
+    case RootActionTypes.SET_SAVING_IN_PROCESS:
+      return {
+        ...state,
+        savingInProcess: action.data,
       }
     default:
       return state

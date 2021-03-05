@@ -25,6 +25,13 @@ export const filteringByNameSubstrSelector = state => {
     return state.filteringByNameSubstr;
 }
 
+export const goodsItemFormDataSelector = state => {
+    return state.formData;
+}
+
+export const savingInProcessSelector = state => {
+    return state.savingInProcess;
+}
 
 function sortPriceUp(a, b) { return (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0) };
 function sortPriceDown(a, b) { return (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0) };

@@ -16,7 +16,14 @@ yarn run
 
 ## @TODO
 
+Уточнить:
 * Компонент таблицы сейчас по сути не является чисто "глупым",спукать ли в него напр. экшены пропсами из родительского?
+
+Практика:
+* Сделать поиск регитсронезависимым
+* Сделать сокрытие GET-параметра фильтра, если он пуст
+
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

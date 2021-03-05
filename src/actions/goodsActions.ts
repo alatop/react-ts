@@ -1,5 +1,7 @@
 import { RootActionTypes } from '../constants/actionTypes/RootActionTypes';
 import { Dispatch } from 'redux';
+import { goodsItemFormDataSelector } from '@app-reducers/commonSelectors';
+import { ThunkDispatch } from 'redux-thunk';
 
 const baseUrl = 'http://localhost:3004/';
 
@@ -15,6 +17,80 @@ export const loadGoods = async (dispatch: Dispatch) => {
     } else {
         alert("Ошибка HTTP: " + response.status);
     }
+};
+
+export const getGoodsItemFormData = (itemId: number | string) => async (dispatch: Dispatch) => {
+    let response = await fetch(baseUrl + 'goods/' + itemId);
+    // await new Promise(r => setTimeout(r, 1000));
+    if (response.ok) {
+        let json = await response.json();
+        dispatch({
+            type: RootActionTypes.SET_FORM_GOODS_ITEM_DATA,
+            data: json,
+        });
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
+};
+
+export const editGoodsItemFormDataValue = (name: string, value: string) => async (dispatch: Dispatch) => {
+    dispatch({
+        type: RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_VALUE,
+        data: {
+            name: name,
+            value: value,
+        },
+    });
+};
+
+export const saveGoodsFormData = (itemId: number | string) => async (dispatch: Dispatch, getState: Function) => {
+
+
+    const data = goodsItemFormDataSelector(getState());
+
+    console.log('saveGoodsFormData data', data);
+
+    onSavingInProcess(dispatch);
+    let response = await fetch(
+        baseUrl + 'goods/' + itemId,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+    offSavingInProcess(dispatch);
+
+    if (response.ok) {
+        let json = await response.json();
+        dispatch({
+            type: RootActionTypes.SET_FORM_GOODS_ITEM_DATA,
+            data: json,
+        });
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
+};
+
+export const onSavingInProcess = (dispatch: Dispatch) => {
+    dispatch({
+        type: RootActionTypes.SET_SAVING_IN_PROCESS,
+        data: true,
+    });
+};
+
+export const offSavingInProcess = (dispatch: Dispatch) => {
+    dispatch({
+        type: RootActionTypes.SET_SAVING_IN_PROCESS,
+        data: false,
+    });
+};
+
+export const resetGoodsItemFormData = (itemId: number | string) => async (dispatch: Dispatch) => {
+    dispatch({
+        type: RootActionTypes.RESET_FORM_GOODS_ITEM_DATA,
+    });
 };
 
 export const resetGoodsList = async (dispatch: Dispatch) => {
@@ -51,7 +127,7 @@ export const sortByNameDown = async (dispatch: Dispatch) => {
     });
 };
 
-export const filterByName =  (substr?: string) => async (dispatch: Dispatch) => {
+export const filterByName = (substr?: string) => async (dispatch: Dispatch) => {
     dispatch({
         type: RootActionTypes.SET_FILTERING_BY_NAME_SUBSTR,
         data: substr,

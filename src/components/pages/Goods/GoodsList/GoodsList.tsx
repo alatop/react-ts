@@ -1,5 +1,7 @@
 import { filterByName, loadGoods, resetGoodsList } from '@app-actions/goodsActions';
-import { filteringByNameSubstrSelector, getGoodsListIsLoaded, goodsLisSortedtSelector } from '@app-reducers/commonSelectors';
+import { filteringByNameSubstrSelector, 
+  getGoodsListIsLoaded, goodsLisSortedtSelector
+} from '@app-reducers/commonSelectors';
 import UrlSyncedTextInput from '@app-universal/Form/UrlSyncedTextInput';
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';

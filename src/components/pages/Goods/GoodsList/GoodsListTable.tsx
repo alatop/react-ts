@@ -6,14 +6,10 @@ import {
 } from '@app-actions/goodsActions';
 import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
+import { GoodsItemType } from '@app-types';
 
-type GoodType = {
-    id: number,
-    name: string,
-    price: string,
-}
 
-export type GoodsListType = Array<GoodType>;
+export type GoodsListType = Array<GoodsItemType>;
 
 type GoodsListTablePropsType = {
     goods: GoodsListType,

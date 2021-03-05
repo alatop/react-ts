@@ -11,6 +11,10 @@ let RootActionTypes: RootActionTypesListType = {
     OFF_NAME_ASCENDING_SORT: null,
     ON_NAME_ASCENDING_SORT: null,
     SET_FILTERING_BY_NAME_SUBSTR: null,
+    SET_FORM_GOODS_ITEM_DATA: null,
+    RESET_FORM_GOODS_ITEM_DATA: null,
+    EDIT_FORM_GOODS_ITEM_DATA_VALUE: null,
+    SET_SAVING_IN_PROCESS: null,
 };
 
 for (const key of Object.keys(RootActionTypes)) {
