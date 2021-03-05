@@ -70,6 +70,7 @@ export default function GoodsList(props: GoodsListPropsType) {
         value={filteringNameSubstring}
         onChange={onChangeNameFilter}
         getParamName={filterParamName}
+        placeholder="Поиск..."
       />
 
       <div>

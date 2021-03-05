@@ -11,11 +11,13 @@ type TextInputPropsType = {
     onChange?: ChangeEventHandler,
     history: History,
     getParamName: string,
+    placeholder?: string,
 }
 
 
-export default function UrlSyncedTextInput(props: TextInputPropsType) {
-    const { value, onChange, history, getParamName } = props;
+export default function UrlSyncedTextInput({
+    value, onChange, history, getParamName, placeholder }: TextInputPropsType) {
+
 
     const onChangeSelf = React.useCallback((evt) => {
 
@@ -28,6 +30,6 @@ export default function UrlSyncedTextInput(props: TextInputPropsType) {
     }, [onChange, history, getParamName]);
 
     return (
-        <TextInput value={value} onChange={onChangeSelf} />
+        <TextInput value={value} onChange={onChangeSelf} placeholder={placeholder} />
     );
 }
