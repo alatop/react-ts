@@ -18,6 +18,32 @@ export const loadGoods = async (dispatch: Dispatch) => {
     }
 };
 
+export const loadCities = async (dispatch: Dispatch) => {
+    let response = await fetch(baseUrl + 'cities');
+    if (response.ok) {
+        let json = await response.json();
+        dispatch({
+            type: RootActionTypes.SET_CITIES_LIST,
+            data: json,
+        });
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
+};
+
+export const loadCountries = async (dispatch: Dispatch) => {
+    let response = await fetch(baseUrl + 'countries');
+    if (response.ok) {
+        let json = await response.json();
+        dispatch({
+            type: RootActionTypes.SET_COUNTRIES_LIST,
+            data: json,
+        });
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
+};
+
 export const getGoodsItemFormData = (itemId: number | string) => async (dispatch: Dispatch) => {
     let response = await fetch(baseUrl + 'goods/' + itemId);
     // await new Promise(r => setTimeout(r, 1000));

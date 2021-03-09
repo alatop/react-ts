@@ -15,6 +15,8 @@ let RootActionTypes: RootActionTypesListType = {
     RESET_FORM_GOODS_ITEM_DATA: null,
     EDIT_FORM_GOODS_ITEM_DATA_VALUE: null,
     SET_SAVING_IN_PROCESS: null,
+    SET_CITIES_LIST: null,
+    SET_COUNTRIES_LIST: null,
 };
 
 for (const key of Object.keys(RootActionTypes)) {

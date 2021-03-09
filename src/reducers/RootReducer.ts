@@ -16,6 +16,8 @@ const initialState = {
   formData: defultGoodsItemFormDataState,
   formDataSaved: false,
   savingInProcess: false,
+  citiesList: [],
+  countriesList: [],
 }
 
 type commonActionType = {
@@ -75,16 +77,23 @@ export default function rootReducer(state = initialState, action: commonActionTy
       return {
         ...state,
         formData: defultGoodsItemFormDataState,
+        citiesList: [],
+        countriesList: [],
       }
     case RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_VALUE:
       return {
         ...state,
         formData: { ...state.formData, [action.data.name]: action.data.value },
       }
-    case RootActionTypes.SET_SAVING_IN_PROCESS:
+    case RootActionTypes.SET_CITIES_LIST:
       return {
         ...state,
-        savingInProcess: action.data,
+        citiesList: action.data,
+      }
+    case RootActionTypes.SET_COUNTRIES_LIST:
+      return {
+        ...state,
+        countriesList: action.data,
       }
     default:
       return state

@@ -33,6 +33,24 @@ export const savingInProcessSelector = state => {
     return state.savingInProcess;
 }
 
+export const  citiesListSelector = state => {
+    return state. citiesList;
+}
+
+export const countriesListSelector = state => {
+    return state.countriesList;
+}
+
+
+export const goodsItemFormIsReadytSelector = createSelector(
+    citiesListSelector,
+    countriesListSelector,
+    (cities, countries) => {
+        return (cities.length && countries.length) ;
+    }
+);
+
+
 function sortPriceUp(a, b) { return (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0) };
 function sortPriceDown(a, b) { return (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0) };
 
