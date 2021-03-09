@@ -1,7 +1,6 @@
 import { RootActionTypes } from '../constants/actionTypes/RootActionTypes';
 import { Dispatch } from 'redux';
 import { goodsItemFormDataSelector } from '@app-reducers/commonSelectors';
-import { ThunkDispatch } from 'redux-thunk';
 
 const baseUrl = 'http://localhost:3004/';
 

@@ -13,7 +13,7 @@ type GoodsEditPropsType = {
   itemId: number | string,
 };
 
-export default function GoodsItemForm({ formData, itemId } : GoodsEditPropsType) {
+export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) {
 
   const dispatch = useDispatch();
   const savingInProcess = useSelector(savingInProcessSelector);
@@ -30,7 +30,7 @@ export default function GoodsItemForm({ formData, itemId } : GoodsEditPropsType)
     dispatch(saveGoodsFormData(itemId));
 
   },
-    []);
+    [dispatch, itemId]);
 
   return (
     <>

@@ -21,7 +21,7 @@ export default function GoodsEdit(props: GoodsEditPropsType) {
       dispatch(resetGoodsItemFormData);
     };
   },
-    [dispatch]
+    [dispatch, itemId]
   );
 
   const formState = useSelector(goodsItemFormDataSelector);
