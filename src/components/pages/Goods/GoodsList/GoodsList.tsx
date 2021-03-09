@@ -2,7 +2,7 @@ import { filterByName, loadGoods, resetGoodsList } from '@app-actions/goodsActio
 import { filteringByNameSubstrSelector, 
   getGoodsListIsLoaded, goodsLisSortedtSelector
 } from '@app-reducers/commonSelectors';
-import UrlSyncedTextInput from '@app-universal/Form/UrlSyncedTextInput';
+import UrlSyncedTextInput from '@app-universal/Form/Input/UrlSyncedTextInput';
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import GoodsListTable, { GoodsListType } from './GoodsListTable';
