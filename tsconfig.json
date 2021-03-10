@@ -36,6 +36,9 @@
       "@app-pages/*": [
         "components/pages/*"
       ],
+      "@app-constants/*": [
+        "constants/*"
+      ],
     },
   },
   "include": [

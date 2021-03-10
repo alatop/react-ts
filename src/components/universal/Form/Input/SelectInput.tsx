@@ -7,31 +7,38 @@ type SelectInputPropsType = {
     onChange?: ChangeEventHandler,
     name?: string,
     placeholder?: string,
-    options: Array<any>,
+    options: Readonly<Array<any>>,
     valueFieldName: string,
     valueTextFieldName: string,
+    defaultValue?: any,
+    defaultLabel?: string,
 }
 
 export default function SelectInput(
-    { value, onChange, name, placeholder, options, valueFieldName, valueTextFieldName }: SelectInputPropsType) {
+    { value, onChange, name, placeholder, options,
+        valueFieldName, valueTextFieldName, defaultValue, defaultLabel }: SelectInputPropsType) {
 
     const defaultOnChange = React.useCallback(() => { }, []);
     const onChangeCallback = onChange ? onChange : defaultOnChange;
     const nameValue = name ? name : 'noname';
-    const shownValue = value ? value : '';
-    const placeholderValue = placeholder ? placeholder : nameValue;
+    const defaultValueValue = defaultValue ? defaultValue : '';
+    const defaultLabelValue = defaultLabel ? defaultLabel : '';
+    console.log('----------options', options);
 
     return (
-        <select name={name}>
-            {options.map((option, index) => {
+        <select name={nameValue} value={value} onChange={onChangeCallback}>
+            <option value={defaultValueValue}>{defaultLabelValue}</option>
+            {options.map((option: any, index: number) => {
                 let optionValue = option[valueFieldName];
                 return (
-                    <option
-                        value={option[valueFieldName]}
-                        selected={(value === optionValue) ? true : false}
+                    (defaultValueValue !== optionValue) ? <option
+                        key={index}
+                        value={optionValue}
                     >
                         {option[valueTextFieldName]}
-                    </option>);
+                    </option>
+                        : null
+                );
             })}
         </select>
     );

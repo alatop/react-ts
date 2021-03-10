@@ -41,7 +41,6 @@ export const countriesListSelector = state => {
     return state.countriesList;
 }
 
-
 export const goodsItemFormIsReadytSelector = createSelector(
     citiesListSelector,
     countriesListSelector,

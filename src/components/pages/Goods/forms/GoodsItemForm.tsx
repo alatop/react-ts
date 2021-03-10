@@ -10,6 +10,7 @@ import {
   citiesListSelector, countriesListSelector,
 } from '@app-reducers/commonSelectors';
 import FormSection from '@app-universal/Form/Block/FromSection';
+import { deliveryTypes } from '@app-constants/lists/deliveryTypes';
 
 type GoodsEditPropsType = {
   formData: GoodsItemType,
@@ -29,7 +30,7 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
     dispatch(loadCities);
     dispatch(loadCountries);
 
-  }, []);
+  }, [dispatch]);
 
   const onChange = React.useCallback((evt) => {
     dispatch(editGoodsItemFormDataValue(evt.target.name, evt.target.value));
@@ -43,17 +44,36 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
 
   },
     [dispatch, itemId]);
+  const { name, price, count, email, country, city, deliveryType } = formData;
 
   return (
     <>
       { formDataIsLoaded ? <form onSubmit={onSubmit}>
         <FormSection>
-          <TextInput name='name' value={formData.name} onChange={onChange} />
-          <TextInput name='price' value={formData.price} onChange={onChange} />
+          <TextInput name='name' value={name} placeholder="Название" onChange={onChange} />
+          <TextInput name='price' value={price} placeholder="Цена" onChange={onChange} />
+          <TextInput name='count' value={count} placeholder="Количество" onChange={onChange} />
+          <TextInput name='email' value={email} placeholder="Email" onChange={onChange} />
         </FormSection>
         <FormSection>
-          <SelectInput name='city' options={cities} valueFieldName='id' valueTextFieldName='name' />
-          <SelectInput name='country' options={countries} valueFieldName='id' valueTextFieldName='name' />
+          <SelectInput
+            name='delivery'
+            value={deliveryType}
+            options={Object.values(deliveryTypes)} 
+            valueFieldName='value' 
+            valueTextFieldName='label' 
+            onChange={onChange} 
+            defaultValue={deliveryTypes.NO_DELIVERY.value}
+            defaultLabel={deliveryTypes.NO_DELIVERY.label}
+            />
+          <SelectInput
+            name='country'
+            value={country}
+            options={countries} valueFieldName='id' valueTextFieldName='name' onChange={onChange} />
+          <SelectInput
+            name='city'
+            value={city}
+            options={cities} valueFieldName='id' valueTextFieldName='name' onChange={onChange} />
         </FormSection>
         <SubmitButton text="Сохранить" disabled={savingInProcess} />
       </form>

@@ -23,7 +23,12 @@
     {
       "id": 5,
       "name": "ball",
-      "price": "2345"
+      "price": "2345",
+      "country": "1",
+      "city": "2",
+      "count": "3",
+      "email": "qwe@sdfg.e",
+      "delivery": "2"
     }
   ],
   "countries": [
