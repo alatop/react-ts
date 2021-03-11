@@ -3,6 +3,7 @@ import { editGoodsItemFormDataValue, saveGoodsFormData, loadCities, loadCountrie
 import { useDispatch, useSelector } from 'react-redux';
 import TextInput from '@app-universal/Form/Input/TextInput';
 import SelectInput from '@app-universal/Form/Input/SelectInput';
+import RadioButtonGroupInput from '@app-universal/Form/Input/RadioButtonGroupInput';
 import { GoodsItemType } from '@app-types';
 import SubmitButton from '@app-universal/Form/Button/SubmitButton';
 import {
@@ -59,17 +60,28 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
           <SelectInput
             name='delivery'
             value={deliveryType}
-            options={Object.values(deliveryTypes)} 
-            valueFieldName='value' 
-            valueTextFieldName='label' 
-            onChange={onChange} 
+            options={Object.values(deliveryTypes)}
+            valueFieldName='value'
+            valueTextFieldName='label'
+            onChange={onChange}
             defaultValue={deliveryTypes.NO_DELIVERY.value}
             defaultLabel={deliveryTypes.NO_DELIVERY.label}
-            />
+          />
+          <RadioButtonGroupInput
+            name='country'
+            value={country}
+            options={countries}
+            valueFieldName='id' 
+            valueTextFieldName='name'
+            onChange={onChange}
+          />
           <SelectInput
             name='country'
             value={country}
-            options={countries} valueFieldName='id' valueTextFieldName='name' onChange={onChange} />
+            options={countries} 
+            valueFieldName='id' 
+            valueTextFieldName='name' 
+            onChange={onChange} />
           <SelectInput
             name='city'
             value={city}
