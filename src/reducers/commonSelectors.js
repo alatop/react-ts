@@ -33,8 +33,8 @@ export const savingInProcessSelector = state => {
     return state.savingInProcess;
 }
 
-export const  citiesListSelector = state => {
-    return state. citiesList;
+export const citiesListSelector = state => {
+    return state.citiesList;
 }
 
 export const countriesListSelector = state => {
