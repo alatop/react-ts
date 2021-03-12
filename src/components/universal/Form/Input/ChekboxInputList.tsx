@@ -1,8 +1,9 @@
 
 import React from "react";
 import { ChangeEventHandler } from "react";
+import ChekboxInput from './ChekboxInput';
 
-type SelectInputPropsType = {
+type TextInputPropsType = {
     value?: any,
     onChange?: ChangeEventHandler,
     name?: string,
@@ -10,20 +11,15 @@ type SelectInputPropsType = {
     options: Readonly<Array<any>>,
     valueFieldName: string,
     valueTextFieldName: string,
-    defaultValue?: any,
-    defaultLabel?: string,
 }
 
-export default function RadioButtonGroupInput(
-    { value, onChange, name, placeholder, options,
-        valueFieldName, valueTextFieldName, defaultValue, defaultLabel }: SelectInputPropsType) {
+export default function ChekboxInputList(props: TextInputPropsType) {
+    const { value, onChange, name, 
+        placeholder, options, valueFieldName, valueTextFieldName } = props;
 
     const defaultOnChange = React.useCallback(() => { }, []);
     const onChangeCallback = onChange ? onChange : defaultOnChange;
     const nameValue = name ? name : 'noname';
-    const defaultValueValue = defaultValue ? defaultValue : '';
-    const defaultLabelValue = defaultLabel ? defaultLabel : '';
-    console.log('----------options', options);
 
     return (
         <>
@@ -32,15 +28,13 @@ export default function RadioButtonGroupInput(
                 console.log('value === optionValue', value, optionValue, value === optionValue);
                 return (
                     <div key={index}>
-                        <input
-                            type="radio"
+                        <ChekboxInput
                             name={nameValue}
                             value={optionValue}
-                            id={nameValue}
                             checked={value == optionValue}
-                            onChange={onChange}
+                            onChange={onChangeCallback}
+                            label={option[valueTextFieldName]}
                         />
-                        <label htmlFor={nameValue}>{option[valueTextFieldName]}</label>
                     </div>
                 );
             })}

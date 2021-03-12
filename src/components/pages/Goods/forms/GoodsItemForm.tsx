@@ -12,6 +12,7 @@ import {
 } from '@app-reducers/commonSelectors';
 import FormSection from '@app-universal/Form/Block/FromSection';
 import { deliveryTypes } from '@app-constants/lists/deliveryTypes';
+import ChekboxInputList from '@app-universal/Form/Input/ChekboxInputList';
 
 type GoodsEditPropsType = {
   formData: GoodsItemType,
@@ -35,9 +36,16 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
 
   const onChange = React.useCallback((evt) => {
     dispatch(editGoodsItemFormDataValue(evt.target.name, evt.target.value));
-
   },
     [dispatch]);
+
+  const onChangeRadioValue = React.useCallback((evt) => {
+    console.log('handleChangeCheckbox: ', evt.target.name, ", isChecked: ", evt.target.checked);
+    console.log('evt.target: ', evt.target, evt.target.value);
+    // dispatch(editGoodsItemFormDataValue(evt.target.name, evt.target.value));
+  },
+    [dispatch]);
+
 
   const onSubmit = React.useCallback((event) => {
     event.preventDefault();
@@ -71,21 +79,26 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
             name='country'
             value={country}
             options={countries}
-            valueFieldName='id' 
+            valueFieldName='id'
             valueTextFieldName='name'
             onChange={onChange}
           />
           <SelectInput
-            name='country'
-            value={country}
-            options={countries} 
-            valueFieldName='id' 
-            valueTextFieldName='name' 
-            onChange={onChange} />
-          <SelectInput
             name='city'
             value={city}
-            options={cities} valueFieldName='id' valueTextFieldName='name' onChange={onChange} />
+            options={cities}
+            valueFieldName='id'
+            valueTextFieldName='name'
+            onChange={onChange}
+          />
+          <ChekboxInputList
+            name='city'
+            value={city}
+            options={cities}
+            valueFieldName='id'
+            valueTextFieldName='name'
+            onChange={onChange}
+          />
         </FormSection>
         <SubmitButton text="Сохранить" disabled={savingInProcess} />
       </form>
