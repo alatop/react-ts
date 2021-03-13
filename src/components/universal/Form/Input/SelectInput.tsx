@@ -24,6 +24,7 @@ export default function SelectInput(
     const defaultValueValue = defaultValue ? defaultValue : '';
     const defaultLabelValue = defaultLabel ? defaultLabel : '';
     console.log('----------options', options);
+    console.log('---------- value', value);
 
     return (
         <select name={nameValue} value={value} onChange={onChangeCallback}>

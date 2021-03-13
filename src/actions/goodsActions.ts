@@ -58,7 +58,7 @@ export const getGoodsItemFormData = (itemId: number | string) => async (dispatch
     }
 };
 
-export const editGoodsItemFormDataValue = (name: string, value: string) => async (dispatch: Dispatch) => {
+export const editGoodsItemFormDataValue = (name: string, value: any) => async (dispatch: Dispatch) => {
     dispatch({
         type: RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_VALUE,
         data: {

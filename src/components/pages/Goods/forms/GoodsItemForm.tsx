@@ -28,16 +28,22 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
   const countries = useSelector(countriesListSelector);
 
   React.useEffect(() => {
-
     dispatch(loadCities);
     dispatch(loadCountries);
-
   }, [dispatch]);
 
   const onChange = React.useCallback((evt) => {
     dispatch(editGoodsItemFormDataValue(evt.target.name, evt.target.value));
   },
-    [dispatch]);
+    [dispatch]
+  );
+
+  const onChangeInt = React.useCallback((evt) => {
+    dispatch(editGoodsItemFormDataValue(evt.target.name, 
+      parseInt(evt.target.value)))
+  },
+    [dispatch]
+  );
 
   const onChangeRadioValue = React.useCallback((evt) => {
     console.log('handleChangeCheckbox: ', evt.target.name, ", isChecked: ", evt.target.checked);
@@ -71,7 +77,7 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
             options={Object.values(deliveryTypes)}
             valueFieldName='value'
             valueTextFieldName='label'
-            onChange={onChange}
+            onChange={onChangeInt}
             defaultValue={deliveryTypes.NO_DELIVERY.value}
             defaultLabel={deliveryTypes.NO_DELIVERY.label}
           />
