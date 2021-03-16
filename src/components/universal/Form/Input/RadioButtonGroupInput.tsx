@@ -37,7 +37,7 @@ export default function RadioButtonGroupInput(
                             name={nameValue}
                             value={optionValue}
                             id={nameValue}
-                            checked={value == optionValue}
+                            checked={value === optionValue}
                             onChange={onChange}
                         />
                         <label htmlFor={nameValue}>{option[valueTextFieldName]}</label>

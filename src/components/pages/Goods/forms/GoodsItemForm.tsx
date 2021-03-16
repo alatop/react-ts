@@ -72,7 +72,7 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
         </FormSection>
         <FormSection>
           <SelectInput
-            name='delivery'
+            name='deliveryType'
             value={deliveryType}
             options={Object.values(deliveryTypes)}
             valueFieldName='value'
