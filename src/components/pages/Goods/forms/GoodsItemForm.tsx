@@ -89,14 +89,6 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
             valueTextFieldName='name'
             onChange={onChange}
           />
-          <SelectInput
-            name='city'
-            value={city}
-            options={cities}
-            valueFieldName='id'
-            valueTextFieldName='name'
-            onChange={onChange}
-          />
           <ChekboxInputList
             name='city'
             value={city}
