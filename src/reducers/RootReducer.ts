@@ -1,10 +1,10 @@
 
 import { RootActionTypes } from '../constants/actionTypes/RootActionTypes';
+import jswl from 'js-wrapper-lib'; 
+  
+const defultGoodsItemFormDataState : any =  {
 
-
-const defultGoodsItemFormDataState = {
-
-};
+}; 
 
 const initialState = {
   goods: [],
@@ -18,12 +18,12 @@ const initialState = {
   savingInProcess: false,
   citiesList: [],
   countriesList: [],
-}
-
+}  
+    
 type commonActionType = {
   type: string,
   data: any,
-}
+} 
 
 export default function rootReducer(state = initialState, action: commonActionType) {
   switch (action.type) {
@@ -85,6 +85,20 @@ export default function rootReducer(state = initialState, action: commonActionTy
         ...state,
         formData: { ...state.formData, [action.data.name]: action.data.value },
       }
+    case RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_ARRAY_ITEMS: {
+      let currentValue = state.formData[action.data.name];
+
+      if (action.data.add) {
+        currentValue.push(action.data.value);
+      } else {
+        currentValue = jswl.arr.removeAllElementsLike(currentValue, action.data.value);
+      }
+
+      return {
+        ...state,
+        formData: { ...state.formData, [action.data.name]: currentValue },
+      }
+    }
     case RootActionTypes.SET_CITIES_LIST:
       return {
         ...state,

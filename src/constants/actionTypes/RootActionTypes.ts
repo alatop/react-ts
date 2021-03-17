@@ -14,6 +14,7 @@ let RootActionTypes: RootActionTypesListType = {
     SET_FORM_GOODS_ITEM_DATA: null,
     RESET_FORM_GOODS_ITEM_DATA: null,
     EDIT_FORM_GOODS_ITEM_DATA_VALUE: null,
+    EDIT_FORM_GOODS_ITEM_DATA_ARRAY_ITEMS: null,
     SET_SAVING_IN_PROCESS: null,
     SET_CITIES_LIST: null,
     SET_COUNTRIES_LIST: null,

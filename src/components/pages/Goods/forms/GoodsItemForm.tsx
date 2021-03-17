@@ -53,6 +53,14 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
     [dispatch]);
 
 
+    const onChangeIntArrayByCheckedItem = React.useCallback((evt) => {
+      dispatch(editGoodsItemFormDataValue(evt.target.name, 
+        parseInt(evt.target.value)))
+    },
+      [dispatch]
+    );
+
+
   const onSubmit = React.useCallback((event) => {
     event.preventDefault();
     dispatch(saveGoodsFormData(itemId));
@@ -87,7 +95,7 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
             options={countries}
             valueFieldName='id'
             valueTextFieldName='name'
-            onChange={onChange}
+            onChange={onChangeInt}
           />
           <ChekboxInputList
             name='city'
@@ -95,7 +103,7 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
             options={cities}
             valueFieldName='id'
             valueTextFieldName='name'
-            onChange={onChange}
+            onChange={onChangeInt}
           />
         </FormSection>
         <SubmitButton text="Сохранить" disabled={savingInProcess} />
