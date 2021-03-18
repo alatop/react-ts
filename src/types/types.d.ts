@@ -10,7 +10,7 @@ export type GoodsItemType = {
     name: string,
     price: string,
     country: number,
-    city: number,
+    cities?: Array<number>,
     count: number,
     email: number,
     deliveryType: number,

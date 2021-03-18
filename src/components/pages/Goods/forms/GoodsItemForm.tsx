@@ -1,5 +1,8 @@
 import React from "react";
-import { editGoodsItemFormDataValue, saveGoodsFormData, loadCities, loadCountries } from '@app-actions/goodsActions';
+import {
+  editGoodsItemFormDataValue, saveGoodsFormData,
+  loadCities, loadCountries, editGoodsItemFormDataArrayItems
+} from '@app-actions/goodsActions';
 import { useDispatch, useSelector } from 'react-redux';
 import TextInput from '@app-universal/Form/Input/TextInput';
 import SelectInput from '@app-universal/Form/Input/SelectInput';
@@ -24,7 +27,7 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
   const dispatch = useDispatch();
   const savingInProcess = useSelector(savingInProcessSelector);
   const formDataIsLoaded = useSelector(goodsItemFormIsReadytSelector);
-  const cities = useSelector(citiesListSelector);
+  const citiesList = useSelector(citiesListSelector);
   const countries = useSelector(countriesListSelector);
 
   React.useEffect(() => {
@@ -39,7 +42,7 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
   );
 
   const onChangeInt = React.useCallback((evt) => {
-    dispatch(editGoodsItemFormDataValue(evt.target.name, 
+    dispatch(editGoodsItemFormDataValue(evt.target.name,
       parseInt(evt.target.value)))
   },
     [dispatch]
@@ -53,12 +56,12 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
     [dispatch]);
 
 
-    const onChangeIntArrayByCheckedItem = React.useCallback((evt) => {
-      dispatch(editGoodsItemFormDataValue(evt.target.name, 
-        parseInt(evt.target.value)))
-    },
-      [dispatch]
-    );
+  const onChangeIntArrayByCheckedItem = React.useCallback((evt) => {
+    dispatch(editGoodsItemFormDataArrayItems(evt.target.name,
+      parseInt(evt.target.value), (evt.target.checked)));
+  },
+    [dispatch]
+  );
 
 
   const onSubmit = React.useCallback((event) => {
@@ -67,7 +70,7 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
 
   },
     [dispatch, itemId]);
-  const { name, price, count, email, country, city, deliveryType } = formData;
+  const { name, price, count, email, country, cities, deliveryType } = formData;
 
   return (
     <>
@@ -98,12 +101,12 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
             onChange={onChangeInt}
           />
           <ChekboxInputList
-            name='city'
-            value={city}
-            options={cities}
+            name='cities'
+            value={cities}
+            options={citiesList}
             valueFieldName='id'
             valueTextFieldName='name'
-            onChange={onChangeInt}
+            onChange={onChangeIntArrayByCheckedItem}
           />
         </FormSection>
         <SubmitButton text="Сохранить" disabled={savingInProcess} />

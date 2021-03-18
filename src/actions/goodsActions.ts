@@ -68,14 +68,15 @@ export const editGoodsItemFormDataValue = (name: string, value: any) => async (d
     });
 };
 
-export const editGoodsItemFormDataArrayItems = (name: string, value: any) => async (dispatch: Dispatch) => {
+export const editGoodsItemFormDataArrayItems = (name: string, value: any, checked: boolean) => async (dispatch: Dispatch) => {
     
     
     dispatch({
-        type: RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_VALUE,
+        type: RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_ARRAY_ITEMS,
         data: {
             name: name,
             value: value,
+            add:  checked,
         },
     });
 };

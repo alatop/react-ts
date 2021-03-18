@@ -25,7 +25,7 @@
       "name": "ball",
       "price": "2345",
       "country": 3,
-      "city": 2,
+      "cities": [2],
       "count": 3,
       "email": "qwe@sdfg.e",
       "deliveryType": 3
