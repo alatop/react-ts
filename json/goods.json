@@ -3,7 +3,10 @@
     {
       "id": 1,
       "name": "cat",
-      "price": 12
+      "price": 12,
+      "cities": [
+        1
+      ]
     },
     {
       "id": 2,
@@ -25,7 +28,10 @@
       "name": "ball",
       "price": "2345",
       "country": 3,
-      "cities": [2],
+      "cities": [
+        3,
+        2
+      ],
       "count": 3,
       "email": "qwe@sdfg.e",
       "deliveryType": 3

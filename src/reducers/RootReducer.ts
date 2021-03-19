@@ -87,6 +87,7 @@ export default function rootReducer(state = initialState, action: commonActionTy
       }
     case RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_ARRAY_ITEMS: {
       let currentValue = state.formData[action.data.name];
+      currentValue = Array.isArray(currentValue) ? currentValue : [];
 
       console.log('===========currentValue', currentValue, state.formData, action.data.name);
 

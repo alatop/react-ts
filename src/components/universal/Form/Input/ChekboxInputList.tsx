@@ -2,6 +2,7 @@
 import React from "react";
 import { ChangeEventHandler } from "react";
 import ChekboxInput from './ChekboxInput';
+import jswl from 'js-wrapper-lib';
 
 type TextInputPropsType = {
     value?: any,
@@ -14,7 +15,7 @@ type TextInputPropsType = {
 }
 
 export default function ChekboxInputList(props: TextInputPropsType) {
-    const { value, onChange, name, 
+    const { value, onChange, name,
         placeholder, options, valueFieldName, valueTextFieldName } = props;
 
     const defaultOnChange = React.useCallback(() => { }, []);
@@ -26,12 +27,14 @@ export default function ChekboxInputList(props: TextInputPropsType) {
             {options.map((option: any, index: number) => {
                 let optionValue = option[valueFieldName];
                 console.log('value === optionValue', value, optionValue, value === optionValue);
+                let checked = Array.isArray(value) ?
+                    jswl.arr.inArray(optionValue, value) : false;
                 return (
                     <div key={index}>
                         <ChekboxInput
                             name={nameValue}
                             value={optionValue}
-                            checked={value == optionValue}
+                            checked={checked}
                             onChange={onChangeCallback}
                             label={option[valueTextFieldName]}
                         />
