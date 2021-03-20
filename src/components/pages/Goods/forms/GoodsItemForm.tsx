@@ -10,8 +10,7 @@ import RadioButtonGroupInput from '@app-universal/Form/Input/RadioButtonGroupInp
 import { GoodsItemType } from '@app-types';
 import SubmitButton from '@app-universal/Form/Button/SubmitButton';
 import {
-  savingInProcessSelector, goodsItemFormIsReadytSelector,
-  citiesListSelector, countriesListSelector,
+  savingInProcessSelector, goodsItemFormIsReadytSelector, countriesListSelector,
 } from '@app-reducers/commonSelectors';
 import FormSection from '@app-universal/Form/Block/FromSection';
 import { deliveryTypes } from '@app-constants/lists/deliveryTypes';
@@ -59,14 +58,6 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
   },
     [dispatch]
   );
-
-  const onChangeRadioValue = React.useCallback((evt) => {
-    console.log('handleChangeCheckbox: ', evt.target.name, ", isChecked: ", evt.target.checked);
-    console.log('evt.target: ', evt.target, evt.target.value);
-    // dispatch(editGoodsItemFormDataValue(evt.target.name, evt.target.value));
-  },
-    [dispatch]);
-
 
   const onChangeIntArrayByCheckedItem = React.useCallback((evt) => {
     dispatch(editGoodsItemFormDataArrayItems(evt.target.name,
