@@ -79,7 +79,6 @@ export default function rootReducer(state = initialState, action: commonActionTy
         formDataSaved: true,
       }
     case RootActionTypes.RESET_FORM_GOODS_ITEM_DATA:
-      console.log('RESEEET  REDUUUUUUUUUUUUUSER!');
       return {
         ...state,
         formData: defultGoodsItemFormDataState,

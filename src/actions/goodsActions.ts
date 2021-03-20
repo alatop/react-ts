@@ -128,8 +128,7 @@ export const offSavingInProcess = (dispatch: Dispatch) => {
     });
 };
 
-export const resetGoodsItemFormData = (itemId: number | string) => async (dispatch: Dispatch) => {
-    console.log('RESEEET  ACTION!');
+export const resetGoodsItemFormData = (dispatch: Dispatch) => {
     dispatch({
         type: RootActionTypes.RESET_FORM_GOODS_ITEM_DATA,
     });
