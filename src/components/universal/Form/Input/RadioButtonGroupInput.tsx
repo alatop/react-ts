@@ -21,9 +21,7 @@ export default function RadioButtonGroupInput(
     const defaultOnChange = React.useCallback(() => { }, []);
     const onChangeCallback = onChange ? onChange : defaultOnChange;
     const nameValue = name ? name : 'noname';
-    const defaultValueValue = defaultValue ? defaultValue : '';
-    const defaultLabelValue = defaultLabel ? defaultLabel : '';
-    console.log('----------options', options);
+    // console.log('----------options', options);
 
     return (
         <>
@@ -38,7 +36,7 @@ export default function RadioButtonGroupInput(
                             value={optionValue}
                             id={nameValue}
                             checked={value === optionValue}
-                            onChange={onChange}
+                            onChange={onChangeCallback}
                         />
                         <label htmlFor={nameValue}>{option[valueTextFieldName]}</label>
                     </div>

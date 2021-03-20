@@ -15,22 +15,25 @@ import {
 import FormSection from '@app-universal/Form/Block/FromSection';
 import { deliveryTypes } from '@app-constants/lists/deliveryTypes';
 import ChekboxInputList from '@app-universal/Form/Input/ChekboxInputList';
-import { correspondsToCountyCitiesSelector } from '@app-reducers/formSelectors';
+import { correspondsToCountyCitiesSelector, isGoodsFormSavedSuccessfullySelector } from '@app-reducers/formSelectors';
 import jswl from 'js-wrapper-lib';
+import { useHistory } from "react-router-dom";
 
 type GoodsEditPropsType = {
   formData: GoodsItemType,
   itemId: number | string,
+  afterSaveRoute: string,
 };
 
-export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) {
+export default function GoodsItemForm({ formData, itemId, afterSaveRoute }: GoodsEditPropsType) {
 
   const dispatch = useDispatch();
   const savingInProcess = useSelector(savingInProcessSelector);
   const formDataIsLoaded = useSelector(goodsItemFormIsReadytSelector);
   const citiesList = useSelector(correspondsToCountyCitiesSelector);
   const countries = useSelector(countriesListSelector);
-
+  const history = useHistory();
+  const formSaved = useSelector(isGoodsFormSavedSuccessfullySelector);
   const { name, price, count, email, country, cities, deliveryType } = formData;
 
 
@@ -45,6 +48,12 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
     dispatch(loadCities);
     dispatch(loadCountries);
   }, [dispatch]);
+
+  React.useEffect(() => {
+    if (formSaved) {
+      history.push(afterSaveRoute);
+    }
+  }, [formSaved, history])
 
   const onChange = React.useCallback((evt) => {
     dispatch(editGoodsItemFormDataValue(evt.target.name, evt.target.value));
@@ -66,13 +75,12 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
     [dispatch]
   );
 
-
   const onSubmit = React.useCallback((event) => {
     event.preventDefault();
     dispatch(saveGoodsFormData(itemId));
-
   },
-    [dispatch, itemId]);
+    [dispatch, itemId, afterSaveRoute]
+  );
 
   return (
     <>
@@ -123,7 +131,6 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
       </form>
         : 'Инициализация компонентов формы...'
       }
-
     </>
   );
 }

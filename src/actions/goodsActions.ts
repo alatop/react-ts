@@ -102,13 +102,16 @@ export const saveGoodsFormData = (itemId: number | string) => async (dispatch: D
 
     if (response.ok) {
         let json = await response.json();
-        dispatch({
-            type: RootActionTypes.SET_FORM_GOODS_ITEM_DATA,
-            data: json,
-        });
+        markGoodsFormSaved(dispatch);
     } else {
         alert("Ошибка HTTP: " + response.status);
     }
+};
+
+export const markGoodsFormSaved = (dispatch: Dispatch) => {
+    dispatch({
+        type: RootActionTypes.MARK_GOODS_FORM_AS_SAVED,
+    });
 };
 
 export const onSavingInProcess = (dispatch: Dispatch) => {
@@ -126,6 +129,7 @@ export const offSavingInProcess = (dispatch: Dispatch) => {
 };
 
 export const resetGoodsItemFormData = (itemId: number | string) => async (dispatch: Dispatch) => {
+    console.log('RESEEET  ACTION!');
     dispatch({
         type: RootActionTypes.RESET_FORM_GOODS_ITEM_DATA,
     });

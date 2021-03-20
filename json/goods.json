@@ -29,14 +29,14 @@
       "id": 5,
       "name": "ball",
       "price": "2345",
-      "country": 2,
+      "country": 1,
       "cities": [
         3,
         8
       ],
       "count": 3,
       "email": "qwe@sdfg.e",
-      "deliveryType": 3
+      "deliveryType": 2
     }
   ],
   "countries": [

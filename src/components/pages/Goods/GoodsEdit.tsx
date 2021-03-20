@@ -1,22 +1,36 @@
 import React from "react";
 import ModalWindow from '@app-universal/Common/ModalWindow/ModalWindows';
-import { getGoodsItemFormData, resetGoodsItemFormData, } from '@app-actions/goodsActions';
+import {
+  getGoodsItemFormData,
+  resetGoodsItemFormData,
+} from '@app-actions/goodsActions';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   goodsItemFormDataSelector,
 } from '@app-reducers/commonSelectors';
+import { match } from 'react-router';
 import GoodsItemForm from './forms/GoodsItemForm';
+import { History } from 'history';
 
-type GoodsEditPropsType = any;
+// указываем допустимые в нашем случае параметры
+type filterParams = {
+  goods_id?: string,
+  // name?: string,
+}
+type GoodsEditPropsType = {
+  history: History,
+  match: match<filterParams>,
+};
 
-export default function GoodsEdit(props: GoodsEditPropsType) {
+export default function GoodsEdit({ match }: GoodsEditPropsType) {
 
-  const itemId = props.match.params.goods_id;
+  const itemId = match.params.goods_id;
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getGoodsItemFormData(itemId));
-
+    if (itemId) {
+      dispatch(getGoodsItemFormData(itemId));
+    }
     return () => {
       dispatch(resetGoodsItemFormData);
     };
@@ -33,9 +47,10 @@ export default function GoodsEdit(props: GoodsEditPropsType) {
     >
       <h2>Редактирование товара </h2>
 
-      <GoodsItemForm 
+      <GoodsItemForm
         formData={formState}
-        itemId={itemId}
+        itemId={itemId ? itemId : ''}
+        afterSaveRoute='/goods'
       />
 
     </ModalWindow>

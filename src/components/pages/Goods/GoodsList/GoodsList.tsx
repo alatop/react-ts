@@ -1,5 +1,6 @@
 import { filterByName, loadGoods, resetGoodsList } from '@app-actions/goodsActions';
-import { filteringByNameSubstrSelector, 
+import {
+  filteringByNameSubstrSelector,
   getGoodsListIsLoaded, goodsLisSortedtSelector
 } from '@app-reducers/commonSelectors';
 import UrlSyncedTextInput from '@app-universal/Form/Input/UrlSyncedTextInput';
@@ -22,7 +23,7 @@ type GoodsListPropsType = {
 
 export default function GoodsList(props: GoodsListPropsType) {
 
-  const { history, match } = props;
+  const { history } = props;
   const dispatch = useDispatch();
   const goods: GoodsListType = useSelector(goodsLisSortedtSelector);
   const goodsListIsLoaded: Boolean = useSelector(getGoodsListIsLoaded);
@@ -39,7 +40,7 @@ export default function GoodsList(props: GoodsListPropsType) {
   );
 
   React.useEffect(() => { // обработка изначального фильтра
-    console.log(' match.params', match.params);
+    // console.log(' match.params', match.params);
     const params = queryString.parse(history.location.search);
 
     let initFilterValue: string | null = null;
@@ -51,11 +52,9 @@ export default function GoodsList(props: GoodsListPropsType) {
       dispatch(filterByName(initFilterValue));
     }
   },
-  // eslint-disable-next-line
+    // eslint-disable-next-line
     [dispatch]
   );
-
-  console.log('OUT match.params', match.params);
 
   const filteringNameSubstring = useSelector(filteringByNameSubstrSelector);
   const onChangeNameFilter = React.useCallback((evt) => {
