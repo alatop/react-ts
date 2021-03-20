@@ -6,6 +6,10 @@ export const selectedCountrySelector = state => {
     return state.formData ? state.formData.country : null;
 }
 
+export const selectedDeliveryTypeSelector = state => {
+    return state.formData ? state.formData.deliveryType : null;
+}
+
 export const correspondsToCountyCitiesSelector = createSelector(
     citiesListSelector,
     selectedCountrySelector,

@@ -13,5 +13,5 @@ export type GoodsItemType = {
     cities?: Array<number>,
     count: number,
     email: number,
-    deliveryType: number,
+    deliveryType?: number,
 }

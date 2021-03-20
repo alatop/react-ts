@@ -17,6 +17,7 @@ import FormSection from '@app-universal/Form/Block/FromSection';
 import { deliveryTypes } from '@app-constants/lists/deliveryTypes';
 import ChekboxInputList from '@app-universal/Form/Input/ChekboxInputList';
 import { correspondsToCountyCitiesSelector } from '@app-reducers/formSelectors';
+import jswl from 'js-wrapper-lib';
 
 type GoodsEditPropsType = {
   formData: GoodsItemType,
@@ -30,6 +31,16 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
   const formDataIsLoaded = useSelector(goodsItemFormIsReadytSelector);
   const citiesList = useSelector(correspondsToCountyCitiesSelector);
   const countries = useSelector(countriesListSelector);
+
+  const { name, price, count, email, country, cities, deliveryType } = formData;
+
+
+  const showCities = jswl.isDefined(deliveryType)
+    ? (deliveryType === deliveryTypes.CITY.value)
+    : false;
+  const showCountries = jswl.isDefined(deliveryType)
+    ? (showCities || (deliveryType === deliveryTypes.COUNTRY.value))
+    : false;
 
   React.useEffect(() => {
     dispatch(loadCities);
@@ -71,7 +82,6 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
 
   },
     [dispatch, itemId]);
-  const { name, price, count, email, country, cities, deliveryType } = formData;
 
   return (
     <>
@@ -93,22 +103,30 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
             defaultValue={deliveryTypes.NO_DELIVERY.value}
             defaultLabel={deliveryTypes.NO_DELIVERY.label}
           />
-          <RadioButtonGroupInput
-            name='country'
-            value={country}
-            options={countries}
-            valueFieldName='id'
-            valueTextFieldName='name'
-            onChange={onChangeInt}
-          />
-          <ChekboxInputList
-            name='cities'
-            value={cities}
-            options={citiesList}
-            valueFieldName='id'
-            valueTextFieldName='name'
-            onChange={onChangeIntArrayByCheckedItem}
-          />
+          {showCountries ?
+            <RadioButtonGroupInput
+              name='country'
+              value={country}
+              options={countries}
+              valueFieldName='id'
+              valueTextFieldName='name'
+              onChange={onChangeInt}
+            />
+            :
+            null
+          }
+          {showCities ?
+            <ChekboxInputList
+              name='cities'
+              value={cities}
+              options={citiesList}
+              valueFieldName='id'
+              valueTextFieldName='name'
+              onChange={onChangeIntArrayByCheckedItem}
+            />
+            :
+            null
+          }
         </FormSection>
         <SubmitButton text="Сохранить" disabled={savingInProcess} />
       </form>
