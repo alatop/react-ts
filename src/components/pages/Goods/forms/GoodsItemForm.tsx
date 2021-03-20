@@ -16,6 +16,7 @@ import {
 import FormSection from '@app-universal/Form/Block/FromSection';
 import { deliveryTypes } from '@app-constants/lists/deliveryTypes';
 import ChekboxInputList from '@app-universal/Form/Input/ChekboxInputList';
+import { correspondsToCountyCitiesSelector } from '@app-reducers/formSelectors';
 
 type GoodsEditPropsType = {
   formData: GoodsItemType,
@@ -27,7 +28,7 @@ export default function GoodsItemForm({ formData, itemId }: GoodsEditPropsType) 
   const dispatch = useDispatch();
   const savingInProcess = useSelector(savingInProcessSelector);
   const formDataIsLoaded = useSelector(goodsItemFormIsReadytSelector);
-  const citiesList = useSelector(citiesListSelector);
+  const citiesList = useSelector(correspondsToCountyCitiesSelector);
   const countries = useSelector(countriesListSelector);
 
   React.useEffect(() => {

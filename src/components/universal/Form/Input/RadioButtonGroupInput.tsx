@@ -29,7 +29,7 @@ export default function RadioButtonGroupInput(
         <>
             {options.map((option: any, index: number) => {
                 let optionValue = option[valueFieldName];
-                console.log('value === optionValue', value, optionValue, value === optionValue);
+                // console.log('value === optionValue', value, optionValue, value === optionValue);
                 return (
                     <div key={index}>
                         <input
