@@ -18,6 +18,7 @@ import ChekboxInputList from '@app-universal/Form/Input/ChekboxInputList';
 import { correspondsToCountyCitiesSelector, isGoodsFormSavedSuccessfullySelector } from '@app-reducers/formSelectors';
 import jswl from 'js-wrapper-lib';
 import { useHistory } from "react-router-dom";
+import ValidationFrom from "@app-universal/Form/ValidationFrom";
 
 type GoodsEditPropsType = {
   formData: GoodsItemType,
@@ -84,51 +85,52 @@ export default function GoodsItemForm({ formData, itemId, afterSaveRoute }: Good
 
   return (
     <>
-      { formDataIsLoaded ? <form onSubmit={onSubmit}>
-        <FormSection>
-          <TextInput name='name' value={name} placeholder="Название" onChange={onChange} />
-          <TextInput name='price' value={price} placeholder="Цена" onChange={onChange} />
-          <TextInput name='count' value={count} placeholder="Количество" onChange={onChange} />
-          <TextInput name='email' value={email} placeholder="Email" onChange={onChange} />
-        </FormSection>
-        <FormSection>
-          <SelectInput
-            name='deliveryType'
-            value={deliveryType}
-            options={Object.values(deliveryTypes)}
-            valueFieldName='value'
-            valueTextFieldName='label'
-            onChange={onChangeInt}
-            defaultValue={deliveryTypes.NO_DELIVERY.value}
-            defaultLabel={deliveryTypes.NO_DELIVERY.label}
-          />
-          {showCountries ?
-            <RadioButtonGroupInput
-              name='country'
-              value={country}
-              options={countries}
-              valueFieldName='id'
-              valueTextFieldName='name'
+      { formDataIsLoaded ?
+        <ValidationFrom onSubmit={onSubmit} data={formData}>
+          <FormSection>
+            <TextInput name='name' value={name} placeholder="Название" onChange={onChange} />
+            <TextInput name='price' value={price} placeholder="Цена" onChange={onChange} />
+            <TextInput name='count' value={count} placeholder="Количество" onChange={onChange} />
+            <TextInput name='email' value={email} placeholder="Email" onChange={onChange} />
+          </FormSection>
+          <FormSection>
+            <SelectInput
+              name='deliveryType'
+              value={deliveryType}
+              options={Object.values(deliveryTypes)}
+              valueFieldName='value'
+              valueTextFieldName='label'
               onChange={onChangeInt}
+              defaultValue={deliveryTypes.NO_DELIVERY.value}
+              defaultLabel={deliveryTypes.NO_DELIVERY.label}
             />
-            :
-            null
-          }
-          {showCities ?
-            <ChekboxInputList
-              name='cities'
-              value={cities}
-              options={citiesList}
-              valueFieldName='id'
-              valueTextFieldName='name'
-              onChange={onChangeIntArrayByCheckedItem}
-            />
-            :
-            null
-          }
-        </FormSection>
-        <SubmitButton text="Сохранить" disabled={savingInProcess} />
-      </form>
+            {showCountries ?
+              <RadioButtonGroupInput
+                name='country'
+                value={country}
+                options={countries}
+                valueFieldName='id'
+                valueTextFieldName='name'
+                onChange={onChangeInt}
+              />
+              :
+              null
+            }
+            {showCities ?
+              <ChekboxInputList
+                name='cities'
+                value={cities}
+                options={citiesList}
+                valueFieldName='id'
+                valueTextFieldName='name'
+                onChange={onChangeIntArrayByCheckedItem}
+              />
+              :
+              null
+            }
+          </FormSection>
+          <SubmitButton text="Сохранить" disabled={savingInProcess} />
+        </ValidationFrom>
         : 'Инициализация компонентов формы...'
       }
     </>
