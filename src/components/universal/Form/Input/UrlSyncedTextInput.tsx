@@ -1,7 +1,7 @@
 
 import React from "react";
 import { ChangeEventHandler } from "react";
-import TextInput from "./TextInput";
+import TextInput from "./TextInput/TextInput";
 import { History } from 'history';
 import { StringKeyObject } from '@app-types';
 import queryString from 'query-string';

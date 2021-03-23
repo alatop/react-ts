@@ -4,7 +4,7 @@ import {
   loadCities, loadCountries, editGoodsItemFormDataArrayItems
 } from '@app-actions/goodsActions';
 import { useDispatch, useSelector } from 'react-redux';
-import TextInput from '@app-universal/Form/Input/TextInput';
+import TextInput from '@app-universal/Form/Input/TextInput/TextInput';
 import SelectInput from '@app-universal/Form/Input/SelectInput';
 import RadioButtonGroupInput from '@app-universal/Form/Input/RadioButtonGroupInput';
 import { GoodsItemType } from '@app-types';
@@ -54,7 +54,7 @@ export default function GoodsItemForm({ formData, itemId, afterSaveRoute }: Good
     if (formSaved) {
       history.push(afterSaveRoute);
     }
-  }, [formSaved, history])
+  }, [formSaved, history, afterSaveRoute])
 
   const onChange = React.useCallback((evt) => {
     dispatch(editGoodsItemFormDataValue(evt.target.name, evt.target.value));
@@ -63,8 +63,11 @@ export default function GoodsItemForm({ formData, itemId, afterSaveRoute }: Good
   );
 
   const onChangeInt = React.useCallback((evt) => {
+
+    console.log('evt.target.value', evt.target.value, parseInt(evt.target.value));
+
     dispatch(editGoodsItemFormDataValue(evt.target.name,
-      parseInt(evt.target.value)))
+      parseInt(evt.target.value)));
   },
     [dispatch]
   );
@@ -90,7 +93,7 @@ export default function GoodsItemForm({ formData, itemId, afterSaveRoute }: Good
           <FormSection>
             <TextInput name='name' value={name} placeholder="Название" onChange={onChange} />
             <TextInput name='price' value={price} placeholder="Цена" onChange={onChange} />
-            <TextInput name='count' value={count} placeholder="Количество" onChange={onChange} />
+            <TextInput name='count' value={count} placeholder="Количество" onChange={onChangeInt} />
             <TextInput name='email' value={email} placeholder="Email" onChange={onChange} />
           </FormSection>
           <FormSection>
