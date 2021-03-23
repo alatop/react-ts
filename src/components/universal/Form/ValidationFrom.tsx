@@ -9,9 +9,15 @@ type ValidationFromPropsType = {
     data: any,
 }
 
+const defaultErrorsState: any = {};
+export const ValidationFromContext = React.createContext(defaultErrorsState);
+
+
 export default function ValidationFrom(
     { children, onSubmit, data }: ValidationFromPropsType) {
 
+
+    const [errors, setErrors] = React.useState(defaultErrorsState);
 
     const onSubmitSelf = React.useCallback((evt) => {
         evt.preventDefault();
@@ -32,13 +38,16 @@ export default function ValidationFrom(
             // onSubmit(evt);
         } else {
             console.log('Invalid: ' + ajv.errorsText(validate.errors), validate.errors);
+            setErrors(validate.errors);
         }
 
-    }, [onSubmit, data]);
+    }, [onSubmit, data, setErrors]);
 
     return (
+        <ValidationFromContext.Provider value={errors}>
         <form onSubmit={onSubmitSelf}>
             {children}
         </form>
+        </ValidationFromContext.Provider>
     );
 }
