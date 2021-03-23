@@ -2,7 +2,7 @@ import React from "react";
 import ModalWindow from '@app-universal/Common/ModalWindow/ModalWindows';
 import {
   getGoodsItemFormData,
-  resetGoodsItemFormData,
+  resetGoodsItemFormData, loadGoods,
 } from '@app-actions/goodsActions';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -26,6 +26,10 @@ export default function GoodsEdit({ match }: GoodsEditPropsType) {
 
   const itemId = match.params.goods_id;
   const dispatch = useDispatch();
+
+  const reloadGoods = React.useCallback(() => {
+    dispatch(loadGoods);
+  }, [dispatch]);
 
   React.useEffect(() => {
     if (itemId) {
@@ -51,6 +55,7 @@ export default function GoodsEdit({ match }: GoodsEditPropsType) {
         formData={formState}
         itemId={itemId ? itemId : ''}
         afterSaveRoute='/goods'
+        onSuccess={reloadGoods}
       />
 
     </ModalWindow>

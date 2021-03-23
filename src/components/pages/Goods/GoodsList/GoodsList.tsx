@@ -29,14 +29,19 @@ export default function GoodsList(props: GoodsListPropsType) {
   const goodsListIsLoaded: Boolean = useSelector(getGoodsListIsLoaded);
   const filterParamName = 'name';
 
-  React.useEffect(() => {
+
+  const reloadGoods = React.useCallback(() => {
     dispatch(loadGoods);
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    reloadGoods();
 
     return () => {
       dispatch(resetGoodsList);
     };
   },
-    [dispatch]
+    [dispatch, reloadGoods]
   );
 
   React.useEffect(() => { // обработка изначального фильтра

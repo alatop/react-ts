@@ -24,9 +24,10 @@ type GoodsEditPropsType = {
   formData: GoodsItemType,
   itemId: number | string,
   afterSaveRoute: string,
+  onSuccess: () => any,
 };
 
-export default function GoodsItemForm({ formData, itemId, afterSaveRoute }: GoodsEditPropsType) {
+export default function GoodsItemForm({ formData, itemId, afterSaveRoute, onSuccess }: GoodsEditPropsType) {
 
   const dispatch = useDispatch();
   const savingInProcess = useSelector(savingInProcessSelector);
@@ -53,6 +54,7 @@ export default function GoodsItemForm({ formData, itemId, afterSaveRoute }: Good
   React.useEffect(() => {
     if (formSaved) {
       history.push(afterSaveRoute);
+      onSuccess();
     }
   }, [formSaved, history, afterSaveRoute])
 
