@@ -46,7 +46,7 @@ export const ValidationFromContext = React.createContext(defaultErrorsState);
 
 export default function ValidationFrom(
     { children, onSubmit, data }: ValidationFromPropsType) {
-        
+
     const [errors, setErrors] = React.useState(defaultErrorsState);
     const onSubmitSelf = React.useCallback((evt) => {
         evt.preventDefault();
@@ -60,7 +60,7 @@ export default function ValidationFrom(
             setErrors(validate.errors);
         }
 
-    }, [onSubmit, data, setErrors, validate]);
+    }, [onSubmit, data, setErrors]);
 
     return (
         <ValidationFromContext.Provider value={errors}>

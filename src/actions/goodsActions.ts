@@ -68,9 +68,7 @@ export const editGoodsItemFormDataValue = (name: string, value: any) => async (d
     });
 };
 
-export const editGoodsItemFormDataArrayItems = (name: string, value: any, checked: boolean) => async (dispatch: Dispatch) => {
-    
-    
+export const editGoodsItemFormDataArrayItems = (name: string, value: any, checked: boolean) => async (dispatch: Dispatch) => { 
     dispatch({
         type: RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_ARRAY_ITEMS,
         data: {
@@ -101,7 +99,6 @@ export const saveGoodsFormData = (itemId: number | string) => async (dispatch: D
     offSavingInProcess(dispatch);
 
     if (response.ok) {
-        let json = await response.json();
         markGoodsFormSaved(dispatch);
     } else {
         alert("Ошибка HTTP: " + response.status);

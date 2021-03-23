@@ -83,7 +83,7 @@ export default function GoodsItemForm({ formData, itemId, afterSaveRoute }: Good
     event.preventDefault();
     dispatch(saveGoodsFormData(itemId));
   },
-    [dispatch, itemId, afterSaveRoute]
+    [dispatch, itemId]
   );
 
   return (

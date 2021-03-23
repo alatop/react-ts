@@ -34,7 +34,7 @@ export default function TextInput(props: TextInputPropsType) {
                 'dataPath', '/' + nameValue);
             if (!jswl.isEmpty(errorData)) {
 
-                if (value == errorData.data) {
+                if (value === errorData.data) {
                     setErrorText(errorData.message ?
                         'Ошибка: ' + errorData.message : 'Ошибка');
                     setIsError(true);

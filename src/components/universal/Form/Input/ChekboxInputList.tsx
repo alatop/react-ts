@@ -16,7 +16,7 @@ type TextInputPropsType = {
 
 export default function ChekboxInputList(props: TextInputPropsType) {
     const { value, onChange, name,
-        placeholder, options, valueFieldName, valueTextFieldName } = props;
+       options, valueFieldName, valueTextFieldName } = props;
 
     const defaultOnChange = React.useCallback(() => { }, []);
     const onChangeCallback = onChange ? onChange : defaultOnChange;
