@@ -48,7 +48,7 @@ export default function GoodsEdit({ match }: GoodsEditPropsType) {
     dispatch(saveGoodsFormData(itemId));
   }
   },
-    [dispatch, itemId]
+    [dispatch, itemId] 
   );
 
   const formState = useSelector(goodsItemFormDataSelector);

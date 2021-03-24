@@ -78,8 +78,11 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
                                     to={`/goods/edit/${item.id}`}
                                 >
                                     Редактировать
-					            </NavLink> 
-                                <DeleteItemDialog text="Удалить"/>
+					            </NavLink>
+                                    <DeleteItemDialog
+                                        controlText="Удалить"
+                                        itemId={item.id}
+                                    />
                                 </td>
                             </tr>
                         );
