@@ -48,7 +48,7 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
                     <tr>
                         <th>
                             ID
-                    </th>
+                        </th>
                         <th>
                             Название
                         <SortSign
