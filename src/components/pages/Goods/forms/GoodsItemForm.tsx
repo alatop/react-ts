@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  editGoodsItemFormDataValue, saveGoodsFormData,
+  editGoodsItemFormDataValue,
   loadCities, loadCountries, editGoodsItemFormDataArrayItems
 } from '@app-actions/goodsActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,15 +19,18 @@ import { correspondsToCountyCitiesSelector, isGoodsFormSavedSuccessfullySelector
 import jswl from 'js-wrapper-lib';
 import { useHistory } from "react-router-dom";
 import ValidationFrom from "@app-universal/Form/ValidationFrom";
+import { ReactEventHandler } from "react";
 
-type GoodsEditPropsType = {
+type GoodsItemFormPropsType = {
   formData: GoodsItemType,
-  itemId: number | string,
+  itemId?: number | string,
   afterSaveRoute: string,
   onSuccess: () => any,
+  onSubmit: ReactEventHandler,
 };
 
-export default function GoodsItemForm({ formData, itemId, afterSaveRoute, onSuccess }: GoodsEditPropsType) {
+export default function GoodsItemForm({
+  formData, afterSaveRoute, onSuccess, onSubmit }: GoodsItemFormPropsType) {
 
   const dispatch = useDispatch();
   const savingInProcess = useSelector(savingInProcessSelector);
@@ -56,7 +59,7 @@ export default function GoodsItemForm({ formData, itemId, afterSaveRoute, onSucc
       history.push(afterSaveRoute);
       onSuccess();
     }
-  }, [formSaved, history, afterSaveRoute])
+  }, [formSaved, history, afterSaveRoute, onSuccess])
 
   const onChange = React.useCallback((evt) => {
     dispatch(editGoodsItemFormDataValue(evt.target.name, evt.target.value));
@@ -81,12 +84,6 @@ export default function GoodsItemForm({ formData, itemId, afterSaveRoute, onSucc
     [dispatch]
   );
 
-  const onSubmit = React.useCallback((event) => {
-    event.preventDefault();
-    dispatch(saveGoodsFormData(itemId));
-  },
-    [dispatch, itemId]
-  );
 
   return (
     <>

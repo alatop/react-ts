@@ -40,6 +40,17 @@
       "count": 3,
       "email": "qwe@sdfg.e",
       "deliveryType": 3
+    },
+    {
+      "name": "новый",
+      "id": 6,
+      "price": "45",
+      "count": 4,
+      "email": "sfe@sef.ru"
+    },
+    {
+      "name": "ert",
+      "id": 7
     }
   ],
   "countries": [

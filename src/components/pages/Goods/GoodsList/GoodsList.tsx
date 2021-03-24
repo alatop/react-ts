@@ -10,6 +10,7 @@ import GoodsListTable, { GoodsListType } from './GoodsListTable';
 import { History } from 'history';
 import { match } from 'react-router';
 import queryString from 'query-string';
+import { NavLink } from "react-router-dom";
 
 // указываем допустимые в нашем случае параметры
 type filterParams = {
@@ -69,6 +70,11 @@ export default function GoodsList(props: GoodsListPropsType) {
   return (
 
     <div>
+      <NavLink
+        to={`/goods/add`}
+      >
+        Добавить товар
+			</NavLink>
       <UrlSyncedTextInput
         history={history}
         value={filteringNameSubstring}
@@ -79,7 +85,6 @@ export default function GoodsList(props: GoodsListPropsType) {
 
       <div>
         {goodsListIsLoaded ?
-
           goods.length ?
             <GoodsListTable
               goods={goods}

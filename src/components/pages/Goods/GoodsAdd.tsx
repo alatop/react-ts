@@ -1,8 +1,8 @@
 import React from "react";
 import ModalWindow from '@app-universal/Common/ModalWindow/ModalWindows';
 import {
-  getGoodsItemFormData,
-  resetGoodsItemFormData, loadGoods, saveGoodsFormData,
+  saveGoodsFormDataAsNewItem,
+  resetGoodsItemFormData, loadGoods,
 } from '@app-actions/goodsActions';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -24,45 +24,36 @@ type GoodsEditPropsType = {
 
 export default function GoodsEdit({ match }: GoodsEditPropsType) {
 
-  const itemId = match.params.goods_id;
   const dispatch = useDispatch();
+  const formState = useSelector(goodsItemFormDataSelector);
 
   const reloadGoods = React.useCallback(() => {
     dispatch(loadGoods);
   }, [dispatch]);
 
   React.useEffect(() => {
-    if (itemId) {
-      dispatch(getGoodsItemFormData(itemId));
-    }
     return () => {
       dispatch(resetGoodsItemFormData);
     };
   },
-    [dispatch, itemId]
+    [dispatch]
   );
 
   const onSubmit = React.useCallback((event) => {
     event.preventDefault();
-    if (itemId) {
-    dispatch(saveGoodsFormData(itemId));
-  }
+    dispatch(saveGoodsFormDataAsNewItem);
   },
-    [dispatch, itemId]
+    [dispatch]
   );
-
-  const formState = useSelector(goodsItemFormDataSelector);
-
 
   return (
     <ModalWindow
       backRoute='/goods'
     >
-      <h2>Редактирование товара </h2>
-
+      <h2>Добавление товара </h2>
+      
       <GoodsItemForm
         formData={formState}
-        itemId={itemId ? itemId : ''}
         afterSaveRoute='/goods'
         onSuccess={reloadGoods}
         onSubmit={onSubmit}

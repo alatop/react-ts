@@ -68,22 +68,19 @@ export const editGoodsItemFormDataValue = (name: string, value: any) => async (d
     });
 };
 
-export const editGoodsItemFormDataArrayItems = (name: string, value: any, checked: boolean) => async (dispatch: Dispatch) => { 
+export const editGoodsItemFormDataArrayItems = (name: string, value: any, checked: boolean) => async (dispatch: Dispatch) => {
     dispatch({
         type: RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_ARRAY_ITEMS,
         data: {
             name: name,
             value: value,
-            add:  checked,
+            add: checked,
         },
     });
 };
 
 export const saveGoodsFormData = (itemId: number | string) => async (dispatch: Dispatch, getState: Function) => {
-
-
     const data = goodsItemFormDataSelector(getState());
-
     console.log('saveGoodsFormData data', data);
 
     onSavingInProcess(dispatch);
@@ -104,6 +101,30 @@ export const saveGoodsFormData = (itemId: number | string) => async (dispatch: D
         alert("Ошибка HTTP: " + response.status);
     }
 };
+
+export const saveGoodsFormDataAsNewItem =
+    async (dispatch: Dispatch, getState: Function) => {
+        const data = goodsItemFormDataSelector(getState());
+        console.log('saveGoodsFormData data', data);
+
+        onSavingInProcess(dispatch);
+        let response = await fetch(
+            baseUrl + 'goods',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+        offSavingInProcess(dispatch);
+
+        if (response.ok) {
+            markGoodsFormSaved(dispatch);
+        } else {
+            alert("Ошибка HTTP: " + response.status);
+        }
+    };
 
 export const markGoodsFormSaved = (dispatch: Dispatch) => {
     dispatch({
