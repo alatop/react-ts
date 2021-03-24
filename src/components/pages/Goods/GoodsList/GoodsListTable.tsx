@@ -7,6 +7,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import { GoodsItemType } from '@app-types';
+import DeleteItemDialog from '@app-universal/List/DeleteItemDialog'
 
 
 export type GoodsListType = Array<GoodsItemType>;
@@ -77,7 +78,9 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
                                     to={`/goods/edit/${item.id}`}
                                 >
                                     Редактировать
-					            </NavLink> Удалить</td>
+					            </NavLink> 
+                                <DeleteItemDialog text="Удалить"/>
+                                </td>
                             </tr>
                         );
                     })}
