@@ -15,14 +15,14 @@ export default function ModalWindow({ backRoute, children, onClose }: ModalWindo
 
     const closeElementView = <span className="close">×</span>;
     const closeElement = backRoute ? <NavLink to={backRoute}> {closeElementView} </NavLink> : '';
-
     const onCloseCallback = onClose ? onClose : () => {};
+
     return (
         <div className="modal" >
             <div className="modal-content">
 
                 {backRoute ?
-                    { closeElement }
+                     closeElement 
                     :
                     <span className="close" onClick={onCloseCallback}>×</span>
                 }
