@@ -16,12 +16,6 @@
       "price": 15
     },
     {
-      "id": 3,
-      "name": "ljkl",
-      "price": 5,
-      "email": "fgsdg@sdg.ru"
-    },
-    {
       "id": 4,
       "name": "rabbit",
       "price": 8
@@ -47,10 +41,6 @@
       "price": "45",
       "count": 4,
       "email": "sfe@sef.ru"
-    },
-    {
-      "name": "ert",
-      "id": 7
     }
   ],
   "countries": [

@@ -126,6 +126,26 @@ export const saveGoodsFormDataAsNewItem =
         }
     };
 
+export const deleteGoodsItem = (itemId: number, successCallback: Function) =>
+    async (dispatch: Dispatch, getState: Function) => {
+
+  
+        let response = await fetch(
+            baseUrl + 'goods/' + itemId,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+
+        if (response.ok) {
+            successCallback();
+        } else {
+            alert("Ошибка HTTP: " + response.status);
+        }
+    };
+
 export const markGoodsFormSaved = (dispatch: Dispatch) => {
     dispatch({
         type: RootActionTypes.MARK_GOODS_FORM_AS_SAVED,

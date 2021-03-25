@@ -10,7 +10,8 @@ type YesNoDialogPropsType = {
     onAgree: Function,
 }
 
-export default function YesNoDialog({ title, text, onClose, onAgree }: YesNoDialogPropsType) {
+export default function YesNoDialog(
+    { title, text, onClose, onAgree }: YesNoDialogPropsType) {
 
     const onAgreeCallback = React.useCallback(() => {
         onAgree();

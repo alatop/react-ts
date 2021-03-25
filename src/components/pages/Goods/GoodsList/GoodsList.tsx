@@ -88,6 +88,7 @@ export default function GoodsList(props: GoodsListPropsType) {
           goods.length ?
             <GoodsListTable
               goods={goods}
+              reloadListCallback={reloadGoods}
             />
             : 'Список товаров пуст'
           : 'Загрузка данных...'

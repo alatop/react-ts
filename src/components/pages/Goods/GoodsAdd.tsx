@@ -50,15 +50,15 @@ export default function GoodsEdit({ match }: GoodsEditPropsType) {
     <ModalWindow
       backRoute='/goods'
     >
-      <h2>Добавление товара </h2>
-      
-      <GoodsItemForm
-        formData={formState}
-        afterSaveRoute='/goods'
-        onSuccess={reloadGoods}
-        onSubmit={onSubmit}
-      />
-
+      <>
+        <h2>Добавление товара</h2>
+        <GoodsItemForm
+          formData={formState}
+          afterSaveRoute='/goods'
+          onSuccess={reloadGoods}
+          onSubmit={onSubmit}
+        />
+      </>
     </ModalWindow>
   );
 }

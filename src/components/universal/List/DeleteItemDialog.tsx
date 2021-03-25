@@ -1,13 +1,16 @@
 import React from "react";
 import YesNoDialog from '@app-universal/Common/YesNoDialog';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 type DeleteItemDialogPropsTypes = {
   controlText: string,
   itemId: number,
+  deleteAction: (id: number, suucessCallback: Function) => {},
+  onDeleteCallback: Function,
 };
 
-export default function DeleteItemDialog({ controlText, itemId }: DeleteItemDialogPropsTypes) {
+export default function DeleteItemDialog(
+  { controlText, itemId, deleteAction, onDeleteCallback }: DeleteItemDialogPropsTypes) {
 
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
@@ -20,12 +23,19 @@ export default function DeleteItemDialog({ controlText, itemId }: DeleteItemDial
   const onClickOpen = React.useCallback(() => {
     setOpen(true);
   },
-    [setOpen]);
+    [setOpen]
+  );
+
+  const onSuccessDelete = React.useCallback(() => {
+    setOpen(false);
+    onDeleteCallback();
+  },
+    [setOpen, onDeleteCallback]
+  );
 
   const onAgree = React.useCallback(() => {
-
-
-  }, [itemId]);
+    dispatch(deleteAction(itemId, onSuccessDelete))
+  }, [itemId, onSuccessDelete, deleteAction, dispatch]);
 
   return (
     <>

@@ -3,6 +3,7 @@ import React from "react";
 import {
     sortByPriceUp, sortByPriceDown,
     sortByNameUp, sortByNameDown,
+    deleteGoodsItem,
 } from '@app-actions/goodsActions';
 import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
@@ -14,10 +15,11 @@ export type GoodsListType = Array<GoodsItemType>;
 
 type GoodsListTablePropsType = {
     goods: GoodsListType,
+    reloadListCallback: Function,
 }
 
-export default function GoodsListTable(props: GoodsListTablePropsType) {
-    const { goods } = props;
+export default function GoodsListTable(
+    { goods, reloadListCallback }: GoodsListTablePropsType) {
 
     const dispatch = useDispatch();
 
@@ -82,6 +84,8 @@ export default function GoodsListTable(props: GoodsListTablePropsType) {
                                     <DeleteItemDialog
                                         controlText="Удалить"
                                         itemId={item.id}
+                                        deleteAction={deleteGoodsItem}
+                                        onDeleteCallback={reloadListCallback}
                                     />
                                 </td>
                             </tr>
