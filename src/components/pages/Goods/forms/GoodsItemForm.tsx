@@ -1,7 +1,8 @@
 import React from "react";
 import {
   editGoodsItemFormDataValue,
-  loadCities, loadCountries, editGoodsItemFormDataArrayItems
+  loadCities, loadCountries,
+  editGoodsItemFormDataArrayItems
 } from '@app-actions/goodsActions';
 import { useDispatch, useSelector } from 'react-redux';
 import TextInput from '@app-universal/Form/Input/TextInput/TextInput';
@@ -10,12 +11,16 @@ import RadioButtonGroupInput from '@app-universal/Form/Input/RadioButtonGroupInp
 import { GoodsItemType } from '@app-types';
 import SubmitButton from '@app-universal/Form/Button/SubmitButton';
 import {
-  savingInProcessSelector, goodsItemFormIsReadytSelector, countriesListSelector,
+  savingInProcessSelector,
+  goodsItemFormIsReadytSelector, countriesListSelector,
 } from '@app-reducers/commonSelectors';
 import FormSection from '@app-universal/Form/Block/FromSection';
 import { deliveryTypes } from '@app-constants/lists/deliveryTypes';
 import ChekboxInputList from '@app-universal/Form/Input/ChekboxInputList';
-import { correspondsToCountyCitiesSelector, isGoodsFormSavedSuccessfullySelector } from '@app-reducers/formSelectors';
+import {
+  correspondsToCountyCitiesSelector,
+  isGoodsFormSavedSuccessfullySelector
+} from '@app-reducers/formSelectors';
 import jswl from 'js-wrapper-lib';
 import { useHistory } from "react-router-dom";
 import ValidationFrom from "@app-universal/Form/ValidationFrom";
@@ -40,7 +45,6 @@ export default function GoodsItemForm({
   const history = useHistory();
   const formSaved = useSelector(isGoodsFormSavedSuccessfullySelector);
   const { name, price, count, email, country, cities, deliveryType } = formData;
-
 
   const showCities = jswl.isDefined(deliveryType)
     ? (deliveryType === deliveryTypes.CITY.value)
@@ -68,9 +72,7 @@ export default function GoodsItemForm({
   );
 
   const onChangeInt = React.useCallback((evt) => {
-
     console.log('evt.target.value', evt.target.value, parseInt(evt.target.value));
-
     dispatch(editGoodsItemFormDataValue(evt.target.name,
       parseInt(evt.target.value)));
   },
@@ -84,16 +86,35 @@ export default function GoodsItemForm({
     [dispatch]
   );
 
-
   return (
     <>
       { formDataIsLoaded ?
         <ValidationFrom onSubmit={onSubmit} data={formData}>
           <FormSection>
-            <TextInput name='name' value={name} placeholder="Название" onChange={onChange} />
-            <TextInput name='price' value={price} placeholder="Цена" onChange={onChange} />
-            <TextInput name='count' value={count} placeholder="Количество" onChange={onChangeInt} />
-            <TextInput name='email' value={email} placeholder="Email" onChange={onChange} />
+            <TextInput
+              name='name'
+              value={name}
+              placeholder="Название"
+              onChange={onChange}
+            />
+            <TextInput
+              name='price'
+              value={price}
+              placeholder="Цена"
+              onChange={onChange}
+            />
+            <TextInput
+              name='count'
+              value={count}
+              placeholder="Количество"
+              onChange={onChangeInt}
+            />
+            <TextInput
+              name='email'
+              value={email}
+              placeholder="Email"
+              onChange={onChange}
+            />
           </FormSection>
           <FormSection>
             <SelectInput

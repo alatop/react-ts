@@ -12,16 +12,28 @@ type TextInputPropsType = {
     placeholder?: string,
 }
 
-export default function TextInput(props: TextInputPropsType) {
-
-    const { value, onChange, name, placeholder } = props;
+export default function TextInput(
+    { value, onChange, name, placeholder }: TextInputPropsType) {
 
     const defaultOnChange = React.useCallback(() => { }, []);
     const onChangeCallback = onChange ? onChange : defaultOnChange;
     const nameValue = name ? name : 'noname';
     const shownValue = value ? value : '';
     const placeholderValue = placeholder ? placeholder : nameValue;
-    const errors = React.useContext(ValidationFromContext);
+
+    const validationContext = React.useContext(ValidationFromContext);
+    const errors = validationContext ? validationContext.errors: [];
+
+    const setRefCallback = React.useCallback((el: any, name: string) => {
+        if (validationContext && validationContext.setRef) {
+            validationContext.setRef(el, name);
+        }  
+    }, [validationContext]);
+
+    const setSefRef = React.useCallback((el) => {
+        setRefCallback(el, nameValue);
+    }, [setRefCallback, nameValue]
+    );
 
     const [errorText, setErrorText] = React.useState('');
     const [isError, setIsError] = React.useState(false);
@@ -76,11 +88,12 @@ export default function TextInput(props: TextInputPropsType) {
                     onChange={onChangeCallback}
                     name={nameValue}
                     placeholder={placeholderValue}
+                    ref={setSefRef}
                 />
             </div>
-            <div className={isError ? 'error-text': 'normal'}>
+            <div className={isError ? 'error-text' : 'normal'}>
                 {errorText}
-            </div> 
+            </div>
         </div>
     );
 }
