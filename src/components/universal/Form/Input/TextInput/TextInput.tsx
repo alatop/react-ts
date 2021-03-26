@@ -7,28 +7,45 @@ import jswl from 'js-wrapper-lib';
 
 type TextInputPropsType = {
     value?: any,
+    unfocusedValue?: any,
     onChange?: ChangeEventHandler,
     name?: string,
     placeholder?: string,
 }
 
 export default function TextInput(
-    { value, onChange, name, placeholder }: TextInputPropsType) {
+    { value, onChange, name, placeholder, unfocusedValue }: TextInputPropsType) {
 
     const defaultOnChange = React.useCallback(() => { }, []);
     const onChangeCallback = onChange ? onChange : defaultOnChange;
     const nameValue = name ? name : 'noname';
-    const shownValue = value ? value : '';
     const placeholderValue = placeholder ? placeholder : nameValue;
-
     const validationContext = React.useContext(ValidationFromContext);
-    const errors = validationContext ? validationContext.errors: [];
+    const [focused, setFocused] = React.useState(false);
+
+    const realValueView = value ? value : '';
+    
+    const shownValue = focused ? realValueView
+        : (unfocusedValue ? unfocusedValue : realValueView);
+
+    const errors = React.useMemo(() => {
+        return validationContext ? validationContext.errors : []
+    },
+        [validationContext]
+    );
 
     const setRefCallback = React.useCallback((el: any, name: string) => {
         if (validationContext && validationContext.setRef) {
             validationContext.setRef(el, name);
-        }  
+        }
     }, [validationContext]);
+
+    const markFocused = React.useCallback(() => {
+        setFocused(true);
+    }, [setFocused]);
+    const markUnfocused = React.useCallback(() => {
+        setFocused(false);
+    }, [setFocused]);
 
     const setSefRef = React.useCallback((el) => {
         setRefCallback(el, nameValue);
@@ -89,6 +106,8 @@ export default function TextInput(
                     name={nameValue}
                     placeholder={placeholderValue}
                     ref={setSefRef}
+                    onBlur={markUnfocused}
+                    onFocus={markFocused}
                 />
             </div>
             <div className={isError ? 'error-text' : 'normal'}>

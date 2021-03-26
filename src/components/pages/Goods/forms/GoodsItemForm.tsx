@@ -25,6 +25,7 @@ import jswl from 'js-wrapper-lib';
 import { useHistory } from "react-router-dom";
 import ValidationFrom from "@app-universal/Form/ValidationFrom";
 import { ReactEventHandler } from "react";
+import MoneyTextInput from '@app-universal/Form/Input/MoneyTextInput/MoneyTextInput';
 
 type GoodsItemFormPropsType = {
   formData: GoodsItemType,
@@ -66,6 +67,7 @@ export default function GoodsItemForm({
   }, [formSaved, history, afterSaveRoute, onSuccess])
 
   const onChange = React.useCallback((evt) => {
+    console.log('onChange evt.target.value', evt.target.value);
     dispatch(editGoodsItemFormDataValue(evt.target.name, evt.target.value));
   },
     [dispatch]
@@ -73,8 +75,20 @@ export default function GoodsItemForm({
 
   const onChangeInt = React.useCallback((evt) => {
     console.log('evt.target.value', evt.target.value, parseInt(evt.target.value));
+
+    let value: any = parseInt(evt.target.value);
+    value =  !Number.isNaN(value) ? value : null;
+
     dispatch(editGoodsItemFormDataValue(evt.target.name,
-      parseInt(evt.target.value)));
+      value));
+  },
+    [dispatch]
+  );
+
+  const onChangeMoney = React.useCallback((evt) => {
+    // console.log('evt.target.value', evt.target.value, parseInt(evt.target.value));
+    dispatch(editGoodsItemFormDataValue(evt.target.name,
+      parseFloat(evt.target.value).toFixed(2)));
   },
     [dispatch]
   );
@@ -85,6 +99,8 @@ export default function GoodsItemForm({
   },
     [dispatch]
   );
+
+  console.log('------------- formData', formData);
 
   return (
     <>
@@ -97,7 +113,7 @@ export default function GoodsItemForm({
               placeholder="Название"
               onChange={onChange}
             />
-            <TextInput
+            <MoneyTextInput
               name='price'
               value={price}
               placeholder="Цена"

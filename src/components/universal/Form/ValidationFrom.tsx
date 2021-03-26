@@ -31,6 +31,7 @@ const validate = ajv.compile(
             },
             "email": { type: "string", format: "email" },
             "count": { type: "number", },
+            "price": { type: "number", },
         },
         required: ["name"]
     }

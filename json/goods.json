@@ -23,7 +23,7 @@
     {
       "id": 5,
       "name": "ball",
-      "price": "2345",
+      "price": "2345.45",
       "country": 2,
       "cities": [
         3,
@@ -38,8 +38,8 @@
     {
       "name": "новый",
       "id": 6,
-      "price": "45",
-      "count": 4,
+      "price": "45456756.56",
+      "count": 64,
       "email": "sfe@sef.ru"
     }
   ],
