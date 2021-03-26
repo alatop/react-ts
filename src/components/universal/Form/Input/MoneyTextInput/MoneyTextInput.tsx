@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, ChangeEvent} from "react";
 import jswl from 'js-wrapper-lib';
 import TextInput from '../TextInput/TextInput';
 import IMask from 'imask';
@@ -47,6 +47,7 @@ export default function MoneyTextInput(
 
     const moneyOnChange = React.useCallback((evt) => {
         let value = evt.target.value;
+        let name = evt.target.name;
         if (value.length > 1
             && (value.substr(value.length - 1) === '.')) {
 
@@ -56,11 +57,12 @@ export default function MoneyTextInput(
             setShownValue(clearValue + '.');
             evt.target.value = clearValue ? clearValue : '';
             onChangeCallback(evt);
+            onChangeCallback(createEventLikeObject(name, clearValue));
         } else {
             evt.target.value = value ? parseFloat(value) : '';
 
             console.log('logseeeetnig value', evt.target.value, parseFloat(value))
-            onChangeCallback(createEventLikeObject(evt.target.value,parseFloat(value));
+            onChangeCallback(createEventLikeObject(name, parseFloat(value)));
         }
     }, [onChangeCallback]);
 

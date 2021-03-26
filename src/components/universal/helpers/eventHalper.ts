@@ -8,5 +8,5 @@ export const createEventLikeObject =
                 value: value,
                 dataset: dataset,
             }
-        }
+        } as React.ChangeEvent<HTMLInputElement>;
     };
