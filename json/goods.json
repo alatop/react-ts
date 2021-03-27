@@ -44,7 +44,13 @@
     },
     {
       "name": "test",
-      "id": 7
+      "id": 7,
+      "deliveryType": 3,
+      "country": 2,
+      "cities": [
+        2,
+        6
+      ]
     }
   ],
   "countries": [
