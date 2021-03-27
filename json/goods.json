@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "cat",
-      "price": 12,
+      "price": 1645.67,
       "cities": [
         1
       ],
@@ -41,6 +41,10 @@
       "price": 578865,
       "count": 64,
       "email": "sfe@sef.ru"
+    },
+    {
+      "name": "test",
+      "id": 7
     }
   ],
   "countries": [

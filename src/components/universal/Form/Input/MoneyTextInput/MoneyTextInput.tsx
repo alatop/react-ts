@@ -1,10 +1,10 @@
 
 import React from "react";
-import { ChangeEventHandler, ChangeEvent} from "react";
+import { ChangeEventHandler } from "react";
 import jswl from 'js-wrapper-lib';
 import TextInput from '../TextInput/TextInput';
 import IMask from 'imask';
-import {createEventLikeObject } from '@app-universal/helpers/eventHalper';
+import { createEventLikeObject } from '@app-universal/helpers/eventHalper';
 type MoneyTextInputPropsType = {
 
     value?: any,
@@ -24,7 +24,24 @@ const moneyMask = IMask.createMask({
     }
 });
 
+const getFloatValueFromStr = (source: string) => {
 
+    let realValue = null as unknown as number;
+    let floatValue = parseFloat(source);
+    if (Number.isNaN(floatValue)) {
+        let fragments = source.split(".");
+        if (fragments && fragments.length == 2) {
+            let firstPart = parseInt(fragments[0]);
+            if (!Number.isNaN(firstPart)) {
+                realValue = firstPart;
+            }
+        }
+    } else {
+        realValue = floatValue;
+    }
+
+    return realValue;
+}
 
 export default function MoneyTextInput(
     { value, onChange, name, placeholder }: MoneyTextInputPropsType) {
@@ -36,10 +53,8 @@ export default function MoneyTextInput(
 
     React.useEffect(() => {
         if (jswl.isDefined(value)) {
-            console.log('-----------MoneyTextInput value', value);
             setUnfocusedValue(moneyMask.resolve(value.toString()));
         }
-        console.log('-----------MoneyTextInput value 2', value);
         setShownValue(value);
     },
         [value, setUnfocusedValue, setShownValue]
@@ -48,22 +63,11 @@ export default function MoneyTextInput(
     const moneyOnChange = React.useCallback((evt) => {
         let value = evt.target.value;
         let name = evt.target.name;
-        if (value.length > 1
-            && (value.substr(value.length - 1) === '.')) {
+        setShownValue(evt.target.value);
+        onChangeCallback(
+            createEventLikeObject(name, getFloatValueFromStr(value))
+        );
 
-            let clearValue: any = parseInt(evt.target.value);
-            clearValue = !Number.isNaN(value) ? value : null;
-
-            setShownValue(clearValue + '.');
-            evt.target.value = clearValue ? clearValue : '';
-            onChangeCallback(evt);
-            onChangeCallback(createEventLikeObject(name, clearValue));
-        } else {
-            evt.target.value = value ? parseFloat(value) : '';
-
-            console.log('logseeeetnig value', evt.target.value, parseFloat(value))
-            onChangeCallback(createEventLikeObject(name, parseFloat(value)));
-        }
     }, [onChangeCallback]);
 
     return (
@@ -74,5 +78,21 @@ export default function MoneyTextInput(
             name={name}
             placeholder={placeholder}
         />
+
+        //     <TextInput
+        //     value={value}
+        //     unfocusedValue={unfocusedValue}
+        //     onChange={moneyOnChange}
+        //     name={name}
+        //     placeholder={placeholder} 
+        // />
+
+        // <TextInput
+        // value={value}
+        // unfocusedValue={unfocusedValue}
+        // onChange={onChange}
+        // name={name}
+        // placeholder={placeholder} 
+        //  />
     );
 }

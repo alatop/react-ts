@@ -56,9 +56,8 @@ export default function TextInput(
     const [isError, setIsError] = React.useState(false);
 
     React.useEffect(() => {
-
-        console.log('--------------errors', errors);
         if (!jswl.isEmpty(errors)) {
+            console.log('--------------errors', errors);
             const errorData = jswl.arr.getArrElementByObjectProp(errors,
                 'dataPath', '/' + nameValue);
             if (!jswl.isEmpty(errorData)) {
@@ -90,7 +89,7 @@ export default function TextInput(
         [errors, setErrorText, nameValue, value]
     );
 
-    console.log('isError', isError);
+    // console.log('isError', isError);
     const inputClassName = React.useMemo(() => {
         return isError ? 'error-input' : 'normal';
 
