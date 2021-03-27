@@ -3,7 +3,7 @@ import React from "react";
 import './text-input.css';
 import { ChangeEventHandler } from "react";
 import { ValidationFromContext } from '../../ValidationFrom';
-import jswl from 'js-wrapper-lib';
+import useInputErrorGetter from '@app-universal/hooks/useInputErrorGetter'; 
 
 type TextInputPropsType = {
     value?: any,
@@ -52,42 +52,7 @@ export default function TextInput(
     }, [setRefCallback, nameValue]
     );
 
-    const [errorText, setErrorText] = React.useState('');
-    const [isError, setIsError] = React.useState(false);
-
-    React.useEffect(() => {
-        if (!jswl.isEmpty(errors)) {
-            console.log('--------------errors', errors);
-            const errorData = jswl.arr.getArrElementByObjectProp(errors,
-                'dataPath', '/' + nameValue);
-            if (!jswl.isEmpty(errorData)) {
-
-                if (value === errorData.data) {
-                    setErrorText(errorData.message ?
-                        'Ошибка: ' + errorData.message : 'Ошибка');
-                    setIsError(true);
-
-                } else {
-                    setIsError(false);
-                    setErrorText('');
-                }
-            } else { // для required
-                const errorData = jswl.arr.getArrElementByObjectProp(errors,
-                    'params.missingProperty', nameValue);
-
-                if (!jswl.isEmpty(errorData) && (jswl.isEmpty(value))) {
-                    setErrorText(errorData.message ?
-                        'Ошибка: ' + errorData.message : 'Ошибка');
-                    setIsError(true);
-                } else {
-                    setIsError(false);
-                    setErrorText('');
-                }
-            }
-        }
-    },
-        [errors, setErrorText, nameValue, value]
-    );
+    const [isError, errorText] = useInputErrorGetter(nameValue, value, errors);
 
     // console.log('isError', isError);
     const inputClassName = React.useMemo(() => {

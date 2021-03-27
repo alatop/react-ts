@@ -5,6 +5,7 @@ import jswl from 'js-wrapper-lib';
 import TextInput from '../TextInput/TextInput';
 import IMask from 'imask';
 import { createEventLikeObject } from '@app-universal/helpers/eventHalper';
+
 type MoneyTextInputPropsType = {
 
     value?: any,
@@ -30,7 +31,7 @@ const getFloatValueFromStr = (source: string) => {
     let floatValue = parseFloat(source);
     if (Number.isNaN(floatValue)) {
         let fragments = source.split(".");
-        if (fragments && fragments.length == 2) {
+        if (fragments && fragments.length === 2) {
             let firstPart = parseInt(fragments[0]);
             if (!Number.isNaN(firstPart)) {
                 realValue = firstPart;

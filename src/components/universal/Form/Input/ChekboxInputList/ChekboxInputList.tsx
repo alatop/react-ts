@@ -1,7 +1,7 @@
 
 import React from "react";
 import { ChangeEventHandler } from "react";
-import ChekboxInput from './ChekboxInput';
+import ChekboxInput from '../ChekboxInput';
 import jswl from 'js-wrapper-lib';
 
 type TextInputPropsType = {
@@ -23,7 +23,7 @@ export default function ChekboxInputList(props: TextInputPropsType) {
     const nameValue = name ? name : 'noname';
 
     return (
-        <>
+        <div>
             {options.map((option: any, index: number) => {
                 let optionValue = option[valueFieldName];
                 // console.log('value === optionValue', value, optionValue, value === optionValue);
@@ -43,6 +43,6 @@ export default function ChekboxInputList(props: TextInputPropsType) {
             })}
 
 
-        </>
+        </div>
     );
 }

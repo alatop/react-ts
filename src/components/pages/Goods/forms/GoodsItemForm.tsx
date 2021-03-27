@@ -16,7 +16,7 @@ import {
 } from '@app-reducers/commonSelectors';
 import FormSection from '@app-universal/Form/Block/FromSection';
 import { deliveryTypes } from '@app-constants/lists/deliveryTypes';
-import ChekboxInputList from '@app-universal/Form/Input/ChekboxInputList';
+import ChekboxInputList from '@app-universal/Form/Input/ChekboxInputList/ChekboxInputList';
 import {
   correspondsToCountyCitiesSelector,
   isGoodsFormSavedSuccessfullySelector
