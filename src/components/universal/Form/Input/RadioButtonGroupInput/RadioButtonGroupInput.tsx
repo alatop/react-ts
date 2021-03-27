@@ -1,6 +1,9 @@
 
 import React from "react";
 import { ChangeEventHandler } from "react";
+import './radio-button-list.css';
+import useInputErrorGetter from '@app-universal/hooks/useInputErrorGetter';
+import { ValidationFromContext } from '../../ValidationFrom';
 
 type SelectInputPropsType = {
     value?: any,
@@ -23,8 +26,21 @@ export default function RadioButtonGroupInput(
     const nameValue = name ? name : 'noname';
     // console.log('----------options', options);
 
+    const validationContext = React.useContext(ValidationFromContext);
+    const errors = React.useMemo(() => {
+        return validationContext ? validationContext.errors : []
+    },
+        [validationContext]
+    );
+    const [isError, errorText] = useInputErrorGetter(nameValue, value, errors);
+    const inputClassName = React.useMemo(() => {
+        return isError ? 'error-list' : 'normal';
+
+    }, [isError]);
+
+
     return (
-        <>
+        <div className={inputClassName}>
             {options.map((option: any, index: number) => {
                 let optionValue = option[valueFieldName];
                 // console.log('value === optionValue', value, optionValue, value === optionValue);
@@ -42,8 +58,9 @@ export default function RadioButtonGroupInput(
                     </div>
                 );
             })}
-
-
-        </>
+            <div className={isError ? 'error-text' : 'normal'}>
+                {errorText}
+            </div>
+        </div>
     );
 }

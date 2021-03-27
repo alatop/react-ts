@@ -7,7 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import TextInput from '@app-universal/Form/Input/TextInput/TextInput';
 import SelectInput from '@app-universal/Form/Input/SelectInput';
-import RadioButtonGroupInput from '@app-universal/Form/Input/RadioButtonGroupInput';
+import RadioButtonGroupInput from '@app-universal/Form/Input/RadioButtonGroupInput/RadioButtonGroupInput';
 import { GoodsItemType } from '@app-types';
 import SubmitButton from '@app-universal/Form/Button/SubmitButton';
 import {

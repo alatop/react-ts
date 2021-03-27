@@ -53,11 +53,8 @@ export default function TextInput(
     );
 
     const [isError, errorText] = useInputErrorGetter(nameValue, value, errors);
-
-    // console.log('isError', isError);
     const inputClassName = React.useMemo(() => {
         return isError ? 'error-input' : 'normal';
-
     }, [isError]);
 
     return (
