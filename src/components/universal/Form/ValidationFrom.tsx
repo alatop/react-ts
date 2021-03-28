@@ -5,6 +5,7 @@ import Ajv from 'ajv';
 import addFormats from "ajv-formats";
 import { StringKeyObject } from '@app-types';
 import jswl from 'js-wrapper-lib';
+import { deliveryTypes } from '@app-constants/lists/deliveryTypes';
 
 const ajv = new Ajv({ allErrors: true, verbose: true });
 addFormats(ajv);
@@ -33,7 +34,13 @@ const validate = ajv.compile(
             "count": { type: "number", },
             "price": { type: "number", },
         },
-        required: ["name"]
+        required: ["name"],
+        "if": {
+            "properties": { "deliveryType": { "not": { "const": deliveryTypes.NO_DELIVERY.value } } }
+        },
+        "then": {
+            required: ["country"],
+        },
     }
 );
 
@@ -91,7 +98,7 @@ export default function ValidationFrom(
                 name = first.params.missingProperty;
             }
         }
-        if (name) {
+        if (name && filedsRefs.current[name]) {
             filedsRefs.current[name].focus();
         }
     },

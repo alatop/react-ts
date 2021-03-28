@@ -51,6 +51,12 @@
         2,
         6
       ]
+    },
+    {
+      "deliveryType": 2,
+      "name": "jytj",
+      "country": 1,
+      "id": 8
     }
   ],
   "countries": [
