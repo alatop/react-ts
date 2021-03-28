@@ -87,7 +87,7 @@ export default function rootReducer(state = initialState, action: commonActionTy
         formDataSaved: false,
       }
     case RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_VALUE:
-      if ((action.data.name == 'country')
+      if ((action.data.name === 'country')
         && state.formData.country && (action.data.value !== state.formData.country)) {
           return {
             ...state,

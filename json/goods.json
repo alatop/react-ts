@@ -53,10 +53,29 @@
       ]
     },
     {
-      "deliveryType": 2,
+      "deliveryType": 3,
       "name": "jytj",
       "country": 1,
       "id": 8
+    },
+    {
+      "deliveryType": 3,
+      "country": 1,
+      "cities": [
+        1
+      ],
+      "name": "ttyu",
+      "id": 9
+    },
+    {
+      "deliveryType": 3,
+      "country": 1,
+      "cities": [
+        4,
+        5
+      ],
+      "name": "yrty",
+      "id": 10
     }
   ],
   "countries": [

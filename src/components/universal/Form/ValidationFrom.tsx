@@ -35,12 +35,25 @@ const validate = ajv.compile(
             "price": { type: "number", },
         },
         required: ["name"],
-        "if": {
-            "properties": { "deliveryType": { "not": { "const": deliveryTypes.NO_DELIVERY.value } } }
-        },
-        "then": {
-            required: ["country"],
-        },
+        "allOf": [
+            {
+                "if": {
+                    "properties": { "deliveryType": { const: deliveryTypes.CITY.value } } 
+                },
+                "then": {
+                    "properties": { "cities": { "type": "array", "minItems": 1, } },
+                    required: ["cities"], 
+                },
+            },
+            {
+                "if": {
+                    "properties": { "deliveryType": { "not": { "const": deliveryTypes.NO_DELIVERY.value } } }
+                },
+                "then": {
+                    required: ["country"],
+                },
+            },
+        ]
     }
 );
 
