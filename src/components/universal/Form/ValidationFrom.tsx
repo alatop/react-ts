@@ -47,7 +47,13 @@ const validate = ajv.compile(
             },
             {
                 "if": {
-                    "properties": { "deliveryType": { "not": { "const": deliveryTypes.NO_DELIVERY.value } } }
+                    "properties": { 
+                        "deliveryType": { 
+                            "not": { 
+                                "const": deliveryTypes.NO_DELIVERY.value 
+                            } 
+                        } 
+                    }
                 },
                 "then": {
                     required: ["country"],
