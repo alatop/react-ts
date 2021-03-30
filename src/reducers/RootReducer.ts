@@ -1,9 +1,10 @@
 
 import { RootActionTypes } from '../constants/actionTypes/RootActionTypes';
 import jswl from 'js-wrapper-lib';
+import { deliveryTypes } from '@app-constants/lists/deliveryTypes';
 
 const defultGoodsItemFormDataState: any = {
-
+  deliveryType: deliveryTypes.NO_DELIVERY.value,
 };
 
 const initialState = {
@@ -71,7 +72,10 @@ export default function rootReducer(state = initialState, action: commonActionTy
     case RootActionTypes.SET_FORM_GOODS_ITEM_DATA:
       return {
         ...state,
-        formData: action.data,
+        formData: {
+          ...defultGoodsItemFormDataState,
+          ...action.data
+        },
       }
     case RootActionTypes.MARK_GOODS_FORM_AS_SAVED:
       return {
@@ -89,20 +93,19 @@ export default function rootReducer(state = initialState, action: commonActionTy
     case RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_VALUE:
       if ((action.data.name === 'country')
         && state.formData.country && (action.data.value !== state.formData.country)) {
-          return {
-            ...state,
-            formData: { 
-              ...state.formData,
-              [action.data.name]: action.data.value,
-              cities: [],
-            },
-            
-          }
-      } else 
-      return {
-        ...state,
-        formData: { ...state.formData, [action.data.name]: action.data.value },
-      }
+        return {
+          ...state,
+          formData: {
+            ...state.formData,
+            [action.data.name]: action.data.value,
+            cities: [],
+          },
+        }
+      } else
+        return {
+          ...state,
+          formData: { ...state.formData, [action.data.name]: action.data.value },
+        }
     case RootActionTypes.EDIT_FORM_GOODS_ITEM_DATA_ARRAY_ITEMS: {
       let currentValue = state.formData[action.data.name];
       currentValue = Array.isArray(currentValue) ? currentValue : [];

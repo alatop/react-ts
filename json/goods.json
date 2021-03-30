@@ -36,6 +36,7 @@
       "deliveryType": 3
     },
     {
+      "deliveryType": 1,
       "name": "новый",
       "id": 6,
       "price": 578865,
@@ -81,6 +82,30 @@
       "name": "gdfgh",
       "deliveryType": 1,
       "id": 11
+    },
+    {
+      "deliveryType": 1,
+      "name": "gdg",
+      "id": 12
+    },
+    {
+      "deliveryType": 1,
+      "name": "g",
+      "id": 13
+    },
+    {
+      "deliveryType": 1,
+      "name": "ytu",
+      "id": 14
+    },
+    {
+      "deliveryType": 3,
+      "name": "uytu",
+      "country": 1,
+      "id": 15,
+      "cities": [
+        1
+      ]
     }
   ],
   "countries": [
