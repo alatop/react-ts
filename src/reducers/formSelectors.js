@@ -15,14 +15,12 @@ export const correspondsToCountyCitiesSelector = createSelector(
     selectedCountrySelector,
     (cities, country) => {
         let result = filterByCountry(cities, country);
-        // console.log(' filtred result', result);
         return  result;
     }
 );
 
 function filterByCountry(arr, value) {
     return arr.filter((el) => {
-        // console.log('element corre:', el.id === value, el, value);
         return (el.country === value);
     });
 }

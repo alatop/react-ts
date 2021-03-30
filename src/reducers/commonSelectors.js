@@ -83,7 +83,6 @@ export const goodsLisSortedtSelector = createSelector(
         }
 
         let result = goods.sort(sortFunc);
-        // console.log('------sortPriceAsc', sortPriceAsc, result);
         result = nameFilterSubst ? filterByName(result, nameFilterSubst) : result;
         return [...result];
     }

@@ -42,7 +42,6 @@ export default function ChekboxInputList(props: TextInputPropsType) {
             <div>
                 {options.map((option: any, index: number) => {
                     let optionValue = option[valueFieldName];
-                    // console.log('value === optionValue', value, optionValue, value === optionValue);
                     let checked = Array.isArray(value) ?
                         jswl.arr.inArray(optionValue, value) : false;
                     return (

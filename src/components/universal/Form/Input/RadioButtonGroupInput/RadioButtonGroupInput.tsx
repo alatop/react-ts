@@ -24,7 +24,6 @@ export default function RadioButtonGroupInput(
     const defaultOnChange = React.useCallback(() => { }, []);
     const onChangeCallback = onChange ? onChange : defaultOnChange;
     const nameValue = name ? name : 'noname';
-    // console.log('----------options', options);
 
     const validationContext = React.useContext(ValidationFromContext);
     const errors = React.useMemo(() => {
@@ -43,7 +42,6 @@ export default function RadioButtonGroupInput(
         <div className={inputClassName}>
             {options.map((option: any, index: number) => {
                 let optionValue = option[valueFieldName];
-                // console.log('value === optionValue', value, optionValue, value === optionValue);
                 return (
                     <div key={index}>
                         <input

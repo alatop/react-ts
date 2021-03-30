@@ -46,7 +46,6 @@ export default function GoodsList(props: GoodsListPropsType) {
   );
 
   React.useEffect(() => { // обработка изначального фильтра
-    // console.log(' match.params', match.params);
     const params = queryString.parse(history.location.search);
 
     let initFilterValue: string | null = null;
