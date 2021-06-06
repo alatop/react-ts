@@ -15,7 +15,7 @@ export const correspondsToCountyCitiesSelector = createSelector(
     selectedCountrySelector,
     (cities, country) => {
         let result = filterByCountry(cities, country);
-        return  result;
+        return result;
     }
 );
 
